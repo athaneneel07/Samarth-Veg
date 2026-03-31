@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samarth Veg | Authentic Pure Veg Restaurant in Pune</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2e7d32; /* Veg Green */
+            --secondary-color: #f57c00; /* Warm Orange */
+            --bg-color: #fcfcfc;
+            --text-color: #333;
+            --white: #ffffff;
+            --light-gray: #f1f1f1;
+        }
+
+        /* General Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-color); transition: padding-bottom 0.3s; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary-color); }
+        h2 { text-align: center; margin-bottom: 30px; font-size: 2.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
+        }
+        
+        /* Status & Wait Time Badges */
+        .status-wrapper { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; }
+        .status-open { background-color: #4CAF50; color: white; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
+        .status-closed { background-color: #f44336; color: white; box-shadow: 0 0 10px rgba(244, 67, 54, 0.5); }
+        .wait-time-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; background-color: var(--white); color: var(--text-color); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .wait-time-badge i { color: var(--secondary-color); }
+
+        .hero h1 { font-size: 4rem; color: var(--white); margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+        .hero-btns { display: flex; gap: 15px; justify-content: center; margin-top: 20px;}
+        .btn { padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-primary { background: var(--secondary-color); color: white; }
+        .btn-primary:hover { background: #e65100; }
+        .btn-secondary { background: var(--white); color: var(--primary-color); }
+
+        /* Badges */
+        .badges-container { display: flex; justify-content: center; gap: 30px; background: var(--white); padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-wrap: wrap; }
+        .badge { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--primary-color); }
+        .badge i { font-size: 1.5rem; }
+
+        /* Legacy & Gallery */
+        .legacy-section { background: var(--white); padding: 60px 20px; text-align: center; }
+        .legacy-text { max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #555; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s;}
+        .gallery-grid img:hover { transform: scale(1.05); }
+
+        /* Menu Section (Accordion) */
+        .menu-section { max-width: 900px; margin: 0 auto; }
+        .menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap:10px;}
+        .accordion { background-color: var(--white); color: var(--text-color); cursor: pointer; padding: 18px; width: 100%; text-align: left; border: 1px solid #ddd; outline: none; font-size: 1.2rem; font-weight: 600; transition: 0.4s; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .active, .accordion:hover { background-color: var(--light-gray); }
+        .panel { padding: 0 18px; background-color: white; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-radius: 0 0 8px 8px; margin-top: -10px; margin-bottom: 15px; border: 1px solid transparent; }
+        .panel.show { border-color: #ddd; border-top: none; padding: 15px 18px; overflow-y: auto; max-height: 400px !important;}
+        
+        #loading-menu { text-align: center; padding: 40px; color: var(--primary-color); font-size: 1.2rem; font-weight: bold; }
+        
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #ccc; }
+        .menu-item:last-child { border-bottom: none; }
+        .item-details { display: flex; flex-direction: column; }
+        .item-name { font-weight: 500; }
+        .item-price { color: var(--primary-color); font-weight: 600; }
+        .add-btn { background: var(--white); border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .add-btn:hover { background: var(--primary-color); color: white; }
+
+        /* Table Reservation Form */
+        .reservation-section { background: var(--white); padding: 60px 20px; }
+        .res-form { max-width: 600px; margin: 0 auto; background: var(--light-gray); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; font-family: inherit; }
+        .form-group textarea { resize: vertical; }
+        
+        .res-buttons { display: flex; gap: 10px; margin-top: 20px; }
+        .res-btn { flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; transition: 0.3s; }
+        .btn-wa { background: var(--primary-color); }
+        .btn-wa:hover { background: #1b5e20; }
+        .btn-call { background: #007bff; }
+        .btn-call:hover { background: #0056b3; }
+
+        /* Bottom Sticky Cart Bar */
+        .bottom-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--primary-color); color: white; padding: 15px 20px; display: none; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .bottom-cart-info { font-size: 1.1rem; font-weight: 600; display: flex; flex-direction: column;}
+        .bottom-cart-info span { font-size: 0.85rem; font-weight: 400; opacity: 0.9; }
+        .bottom-cart-btn { background-color: var(--white); color: var(--primary-color); border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .bottom-cart-btn:hover { background-color: #e8e8e8; }
+        
+        /* Cart Modal */
+        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1005; justify-content: center; align-items: center; padding: 10px;}
+        .cart-content { background: white; width: 100%; max-width: 500px; padding: 25px; border-radius: 10px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #777; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; }
+        .cart-total { border-top: 2px solid #ddd; margin-top: 15px; padding-top: 10px; font-size: 1.2rem; font-weight: bold; text-align: right; color: var(--primary-color); }
+        
+        /* Checkout Form inside Cart */
+        .checkout-details { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ccc; }
+        .checkout-details h4 { margin-bottom: 15px; color: var(--primary-color); }
+        .order-type-options { display: flex; gap: 15px; margin-bottom: 15px; background: var(--light-gray); padding: 10px; border-radius: 8px; }
+        .order-type-options label { cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+
+        /* Payment Options inside Cart */
+        .payment-options { margin-top: 15px; padding: 15px; background: var(--light-gray); border-radius: 8px; }
+        .payment-options h4 { margin-bottom: 10px; font-size: 1rem; color: #333; }
+        .payment-options label { margin-right: 15px; cursor: pointer; font-weight: 500; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 5px; }
+        .checkout-btn { width: 100%; background: #25D366; color: white; border: none; padding: 15px; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3); transition: 0.3s;}
+        .checkout-btn:hover { background: #1ebe57; }
+
+        /* Reviews, Maps, Footer */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .review-card { background: var(--white); padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .stars { color: gold; margin-bottom: 10px; }
+        .map-section { background: var(--white); padding: 60px 20px; text-align: center; }
+        .map-container { max-width: 1000px; margin: 20px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .direction-bar { background: var(--primary-color); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-radius: 10px; max-width: 1000px; margin: 0 auto 20px auto; }
+        .direction-btn { background: white; color: var(--primary-color); padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        footer { background: #222; color: white; text-align: center; padding: 20px; margin-top: 40px; padding-bottom: 30px;}
+        
+        /* Floating Action Buttons */
+        .fab-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 998; transition: bottom 0.3s; }
+        .fab { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; color: white; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s; }
+        .fab:hover { transform: scale(1.1); }
+        .fab-call { background-color: #007bff; }
+        .fab-whatsapp { background-color: #25D366; }
+
+        body.cart-active .fab-container { bottom: 90px; }
+        body.cart-active footer { padding-bottom: 90px; } 
+
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .direction-bar { flex-direction: column; gap: 15px; text-align: center; }
+            .hero-btns { flex-direction: column; }
+            .res-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <!-- Live Status & Wait Time Badge -->
+            <div class="status-wrapper">
+                <div id="status-badge" class="status-badge">Checking Status...</div>
+                <div class="wait-time-badge"><i class="fas fa-clock"></i> Wait Time: <span id="wait-time-text">Loading...</span></div>
+            </div>
+            
+            <h1>Samarth Veg</h1>
+            <p>Authentic, Delicious, and 100% Pure Vegetarian Cuisine</p>
+            <p><i class="fas fa-map-marker-alt"></i> Kothrud, Pune</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Order Online</a>
+                <a href="#reservation" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Reserve a Table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety & Hygiene Badges -->
+    <div class="badges-container">
+        <div class="badge"><i class="fas fa-leaf"></i> 100% Pure Veg</div>
+        <div class="badge"><i class="fas fa-hands-wash"></i> Sanitized Kitchen</div>
+        <div class="badge"><i class="fas fa-carrot"></i> Fresh Ingredients</div>
+        <div class="badge"><i class="fas fa-star"></i> Top Rated</div>
+    </div>
+
+    <!-- Interactive Menu Section -->
+    <section id="menu" class="container menu-section">
+        <h2>Our Menu</h2>
+        <div class="menu-header">
+            <p style="color: #666;">Select items to add to your cart, and order via WhatsApp!</p>
+            <button class="btn btn-primary" onclick="shareMenu()"><i class="fas fa-share-alt"></i> Share Menu</button>
+        </div>
+
+        <div id="loading-menu"><i class="fas fa-spinner fa-spin"></i> Loading latest menu from Kitchen...</div>
+        
+        <!-- Render Menu Accordion -->
+        <div id="menu-container"></div>
+        
+        <p style="text-align: center; font-size: 0.9rem; color: #888; margin-top: 20px;">*Some custom or special items (Thalis, Breads, Rice, Chinese etc.) may not have direct prices listed. Please add them to your cart and inquire about the price directly on WhatsApp!</p>
+    </section>
+
+    <!-- Table Reservation Form -->
+    <section id="reservation" class="reservation-section">
+        <div class="container">
+            <h2>Reserve a Table</h2>
+            <form class="res-form" id="reservationForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="resName" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <input type="number" id="resGuests" required min="1" placeholder="E.g., 4">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="resDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time" id="resTime" required>
+                </div>
+                
+                <div class="res-buttons">
+                    <button type="button" class="res-btn btn-wa" onclick="bookTableWA()"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
+                    <a href="tel:+919595948655" class="res-btn btn-call"><i class="fas fa-phone-alt"></i> Call to Reserve</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Legacy & Gallery -->
+    <section class="legacy-section">
+        <h2>Our Legacy</h2>
+        <p class="legacy-text">
+            Rooted in the heart of Pune, <strong>Samarth Veg</strong> was born out of a passion for authentic Indian culinary traditions. For years, we have been serving the Kothrud community with recipes passed down through generations. Our philosophy is simple: serve food that feels like home, prepared with utmost hygiene and love. 
+        </p>
+    </section>
+
+    <section class="container">
+        <h2>Flavors & Ambience</h2>
+        <div class="gallery-grid">
+            <img src="https://storage.googleapis.com/chat-engine-multimedia-service/2832ee10-671c-43f6-bd00-ff927233df86" alt="Restaurant Interior seating">
+            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80" alt="Paneer Dish">
+            <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=500&q=80" alt="Dosa">
+            <img src="https://storage.googleapis.com/chat-engine-multimedia-service/e08b1dd3-e380-466c-bedf-25c2789f213d" alt="Samarth Veg Exterior">
+        </div>
+    </section>
+
+    <!-- User Reviews -->
+    <section class="container">
+        <h2>What Our Customers Say</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Rahul D.</h3>
+                <p>"Best pure veg restaurant in Kothrud! The Paneer Butter Masala and Butter Naan were incredibly soft. Ordering via WhatsApp is so seamless!"</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <h3>Sneha P.</h3>
+                <p>"Very clean and hygienic place. The staff is extremely polite and the Maharashtrian snacks feel completely homemade."</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Amit K.</h3>
+                <p>"An absolute gem for family dinners. We ordered the Deluxe Punjabi Thali and Veg Crispy, and the portions were fantastic and delicious."</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Priya S.</h3>
+                <p>"I love how easy it is to just scan the QR on the table and place an order directly. The Jain Pav Bhaji here is the best in town!"</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Vikas M.</h3>
+                <p>"Prompt service, warm ambiance, and consistent taste over the years. Their South Indian breakfast items are our go-to for weekend mornings."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maps & Directions -->
+    <section class="map-section">
+        <h2>Locate Us</h2>
+        <div class="direction-bar">
+            <div><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> Plot No 7, Gujarat Colony, Paud Road, Kothrud, Pune - 411038</div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Samarth+Veg,+plot+No+7,+Gujarat+Colony,+Paud+Road,+Kothrud,+Pune+-+411038" target="_blank" class="direction-btn"><i class="fas fa-directions"></i> Get Directions</a>
+        </div>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Samarth%20Veg,%20plot%20No%207,%20Gujarat%20Colony,%20Paud%20Road,%20Kothrud,%20Pune%20-%20411038&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Samarth Veg. All Rights Reserved.</p>
+        <p style="margin-top: 10px; color:#aaa; font-size:0.9rem;">For queries, call +91 95959 48655</p>
+    </footer>
+
+    <!-- Bottom Sticky Cart Bar -->
+    <div class="bottom-cart-bar" id="bottomCartBar">
+        <div class="bottom-cart-info">
+            <div id="bottomItemCount">0 Items</div>
+            <span id="bottomTotalPrice">Estimated Total: ₹0</span>
+        </div>
+        <button class="bottom-cart-btn" onclick="toggleCart()">View Cart <i class="fas fa-shopping-bag"></i></button>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+            <h3 style="margin-bottom: 20px;"><i class="fas fa-receipt"></i> Your Order</h3>
+            <div id="cart-items">
+                <p style="text-align: center; color: #777;">Your cart is empty.</p>
+            </div>
+            
+            <div class="cart-total" id="cart-total">Estimated Total: ₹0</div>
+
+            <!-- Customer Details Form -->
+            <div class="checkout-details" id="checkoutForm">
+                <h4><i class="fas fa-utensils"></i> Order Type:</h4>
+                <div class="order-type-options">
+                    <label><input type="radio" name="orderType" value="Delivery" checked onchange="toggleOrderFields()"> <i class="fas fa-motorcycle"></i> Delivery/Pickup</label>
+                    <label><input type="radio" name="orderType" value="Dine-in" onchange="toggleOrderFields()"> <i class="fas fa-chair"></i> Dine-in (At Desk)</label>
+                </div>
+
+                <h4><i class="fas fa-user"></i> Your Details:</h4>
+                <div class="form-group">
+                    <input type="text" id="orderName" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="orderPhone" placeholder="Mobile Number" required>
+                </div>
+                
+                <div class="form-group" id="addressField">
+                    <textarea id="orderAddress" rows="2" placeholder="Complete Delivery Address (or type 'Pickup' if collecting yourself)"></textarea>
+                </div>
+                <div class="form-group" id="tableField" style="display: none;">
+                    <input type="number" id="tableNumber" placeholder="Table Number (e.g. 5)">
+                </div>
+            </div>
+
+            <!-- Payment Method UI -->
+            <div class="payment-options">
+                <h4><i class="fas fa-wallet"></i> Select Payment Method:</h4>
+                <label><input type="radio" name="paymentMethod" value="UPI" checked> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" width="30" style="margin-right:5px"> UPI</label>
+                <label><input type="radio" name="paymentMethod" value="Cash / Pay at Desk"> <i class="fas fa-money-bill-wave" style="color: green; margin-right:5px;"></i> Cash / Pay at Desk</label>
+            </div>
+
+            <button class="checkout-btn" onclick="checkout()"><i class="fab fa-whatsapp"></i> Confirm & Place Order</button>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container" id="fabContainer">
+        <a href="https://wa.me/919595948655?text=Hello%20Samarth%20Veg,%20I%20have%20an%20inquiry." target="_blank" class="fab fab-whatsapp" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+919595948655" class="fab fab-call" title="Call Us Directly">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // =======================================================
+        // YOUR GOOGLE SHEET ID IS INTEGRATED HERE:
+        // =======================================================
+        const SHEET_ID = "1rNiNCP41QKpooyI0-ZwCg6YcRqPFPZypkTP9RfwEgzA"; 
+        
+        // 🛑 IMPORTANT: Put your actual Merchant UPI ID here (e.g., your_number@ybl)
+        const MERCHANT_UPI_ID = "your_actual_upi_id@bank"; 
+
+        // --- DYNAMIC DATA FETCHING LOGIC ---
+        
+        // The Complete Menu Fallback (Ensures all items load even if Google Sheet fails/is private!)
+        const fallbackMenuData = {
+            "🥘 Tawa Specialities": [
+                {name: "Aloo Methi Dry", price: 150}, {name: "Aloo Jeera Dry", price: 150}, {name: "Bhendi Fry", price: 150}, {name: "Green Peas Fry", price: 150}, {name: "Tawa Paneer", price: 170}, {name: "Tawa Mushroom", price: 180}, {name: "Tawa Diwani", price: 170}, {name: "Tawa Pulav", price: 150}, {name: "Tawa Veg", price: 170}
+            ],
+            "🍢 Starters": [
+                {name: "Veg. Crispy", price: 150}, {name: "Paneer Crispy", price: 170}, {name: "Baby Corn Crispy", price: 150}, {name: "Paneer Pakoda", price: 150}, {name: "Chinese Bhel", price: 120}, {name: "Veg. Spring Roll", price: 150}, {name: "Veg. Manchurian Dry", price: 150}, {name: "Gobi Manchurian Dry", price: 150}, {name: "Paneer Manchurian Dry", price: 170}, {name: "Mushroom Manchurian Dry", price: 170}, {name: "Paneer Chilly Dry", price: 170}, {name: "Mushroom Chilly Dry", price: 170}, {name: "Baby Corn Chilly Dry", price: 150}, {name: "Paneer 65", price: 170}, {name: "Veg. 65", price: 150}, {name: "Gobi 65", price: 150}, {name: "Gobi Lollypop", price: 150}, {name: "Paneer Pickles", price: 170}, {name: "Paneer Tikka Dry (8 pcs)", price: 170}, {name: "Mushroom Tikka Dry (8 pcs)", price: 170}, {name: "Tandoori Aloo", price: 140}, {name: "Hara Bhara Kabab", price: 150}, {name: "Gold Coin", price: 150}, {name: "Paneer Punching Hot", price: 170}, {name: "Mushroom Lemon Hot", price: 170}
+            ],
+            "🍛 Moglai Specialities": [
+                {name: "Veg. Moglai", price: 160}, {name: "Navratna Kurma", price: 180}, {name: "Malai Kofta", price: 180}, {name: "Dum Aloo Kashmiri", price: 180}, {name: "Malai Methi Mutter", price: 160}, {name: "Malai Corn Masala", price: 160}, {name: "Mastani Moglai", price: 160}
+            ],
+            "🥗 Jain Preparation": [
+                {name: "Dal Fry (Jain)", price: 110}, {name: "Dal Palak (Jain)", price: 120}, {name: "Butter Dal Fry (Jain)", price: 120}, {name: "Dal Tadka (Jain)", price: 120}, {name: "Malai Kofta (Jain)", price: 170}, {name: "Paneer Butter Masala (Jain)", price: 170}, {name: "Paneer Makhanwala (Jain)", price: 170}, {name: "Plain Palak (Jain)", price: 130}, {name: "Palak Paneer (Jain)", price: 150}, {name: "Peas Palak (Jain)", price: 130}, {name: "Palak Corn (Jain)", price: 140}, {name: "Palak Babycorn (Jain)", price: 140}
+            ],
+            "🍲 Dal Specialities": [
+                {name: "Plain Dal", price: 100}, {name: "Dal Fry", price: 110}, {name: "Dal Palak", price: 120}, {name: "Butter Dal Fry", price: 120}, {name: "Dal Tadka", price: 120}
+            ],
+            "🍽️ Thalis": [
+                {name: "Punjabi Thali (Limited)", price: 0}, {name: "Punjabi Thali (Regular)", price: 0}, {name: "Deluxe Punjabi Thali", price: 0}
+            ],
+            "🍜 Soups & Salads": [
+                {name: "Cream of Tomato Soup", price: 70}, {name: "Cream of Palak Soup", price: 90}, {name: "Cream of Mushroom Soup", price: 90}, {name: "Sweet Corn Soup (Plain/Veg)", price: 90}, {name: "Hot & Sour Soup", price: 90}, {name: "Manchow Soup", price: 90}, {name: "Lungfung Soup", price: 90}, {name: "Talumin Soup", price: 90}, {name: "Veg Clear Soup", price: 70}, {name: "Green Salad", price: 60}, {name: "Cucumber Salad", price: 60}, {name: "Tomato Salad", price: 60}
+            ],
+            "🥪 Sandwiches & Burgers": [
+                {name: "Bread Butter", price: 40}, {name: "Veg Sandwich", price: 60}, {name: "Cheese Sandwich", price: 80}, {name: "Club Sandwich", price: 90}, {name: "Veg Burger", price: 70}, {name: "Cheese Toast Sandwich", price: 85}
+            ],
+            "🥣 Raitas": [
+                {name: "Aloo Raita", price: 60}, {name: "Cucumber Raita", price: 60}, {name: "Mix Veg Raita", price: 60}, {name: "Tomato Raita", price: 60}, {name: "Pineapple Raita", price: 60}, {name: "Boondi Raita", price: 60}, {name: "Kashmiri Raita", price: 70}
+            ],
+            "🍛 Pav Bhaji": [
+                {name: "Amul Pav Bhaji", price: 90}, {name: "Jain Pav Bhaji", price: 100}, {name: "Cheese Pav Bhaji", price: 115}, {name: "Paneer Pav Bhaji", price: 115}, {name: "Special Pav Bhaji", price: 115}
+            ],
+            "🍕 Pizzas": [
+                {name: "Onion Pizza", price: 150}, {name: "Capsicum Pizza", price: 150}, {name: "Veg Pizza", price: 150}, {name: "Mushroom Pizza", price: 150}, {name: "Cheese Pizza", price: 150}, {name: "Paneer Pizza", price: 150}, {name: "Corn Pizza", price: 150}
+            ],
+            "🍚 Rice Varieties": [
+                {name: "Plain Rice", price: 0}, {name: "Jeera Rice", price: 0}, {name: "Veg Pulav", price: 0}, {name: "Paneer Pulav", price: 0}, {name: "Veg Biryani", price: 0}, {name: "Hyderabadi Biryani", price: 0}, {name: "Veg Fried Rice", price: 0}, {name: "Schezwan Fried Rice", price: 0}, {name: "Hong Kong Fried Rice", price: 0}, {name: "Mushroom Fried Rice", price: 0}, {name: "Triple Schezwan Rice", price: 0}, {name: "Manchurian Rice", price: 0}, {name: "Dal Khichdi", price: 0}
+            ],
+            "🍜 Chinese Dishes": [
+                {name: "Veg Manchurian Gravy", price: 0}, {name: "Paneer Manchurian Gravy", price: 0}, {name: "Mushroom Manchurian Gravy", price: 0}, {name: "Gobi Manchurian Gravy", price: 0}, {name: "Paneer Chilly Fry", price: 0}, {name: "Mushroom Chilly Fry", price: 0}, {name: "Baby Corn Chilly Fry", price: 0}, {name: "Sweet & Sour Veg", price: 0}, {name: "Schezwan Veg", price: 0}, {name: "Paneer in Schezwan Sauce", price: 0}
+            ],
+            "🫓 Tandoor Varieties": [
+                {name: "Chapati", price: 0}, {name: "Roti", price: 0}, {name: "Butter Roti", price: 0}, {name: "Naan", price: 0}, {name: "Butter Naan", price: 0}, {name: "Garlic Naan", price: 0}, {name: "Kulcha", price: 0}, {name: "Stuffed Paratha", price: 0}, {name: "Paneer Paratha", price: 0}, {name: "Bhatura", price: 0}, {name: "Puri", price: 0}
+            ],
+            "🍝 Noodles": [
+                {name: "Hakka Noodles", price: 0}, {name: "Schezwan Noodles", price: 0}, {name: "Singapuri Noodles", price: 0}, {name: "American Chopsuey", price: 0}, {name: "Fried Rice with Noodles", price: 0}
+            ],
+            "🍛 South Indian Snacks": [
+                {name: "Idli Sambar", price: 50}, {name: "Medu Wada", price: 60}, {name: "Masala Dosa", price: 75}, {name: "Cheese Dosa", price: 100}, {name: "Uttappa (Varieties)", price: 65}, {name: "Upma", price: 40}
+            ],
+            "🍲 Maharashtrian Snacks": [
+                {name: "Poha", price: 40}, {name: "Batata Wada", price: 60}, {name: "Sabudana Wada", price: 60}, {name: "Puri Bhaji", price: 80}, {name: "Kachori", price: 60}
+            ],
+            "☕ Hot Beverages": [
+                {name: "Tea", price: 20}, {name: "Coffee", price: 30}, {name: "Hot Chocolate", price: 35}
+            ],
+            "🧃 Fresh Juices": [
+                {name: "Mosambi Juice", price: 70}, {name: "Orange Juice", price: 70}, {name: "Pineapple Juice", price: 70}, {name: "Mango Juice", price: 90}, {name: "Pomegranate Juice", price: 90}
+            ],
+            "🍨 Desserts & Sweets": [
+                {name: "Shrikhand", price: 50}, {name: "Amrakhand", price: 50}, {name: "Gulab Jamun", price: 50}, {name: "Fruit Salad", price: 60}
+            ],
+            "🍧 Kulfi": [
+                {name: "Malai Kulfi", price: 50}, {name: "Pista Kulfi", price: 50}, {name: "Mango Kulfi", price: 50}
+            ],
+            "🥤 Milkshakes": [
+                {name: "Vanilla Milkshake", price: 90}, {name: "Chocolate Milkshake", price: 90}, {name: "Mango Milkshake", price: 90}, {name: "Strawberry Milkshake", price: 90}, {name: "Special Mastani", price: 130}
+            ],
+            "🥤 Cold Drinks": [
+                {name: "Soft Drinks", price: 26}, {name: "Lassi", price: 50}, {name: "Kokam", price: 35}, {name: "Buttermilk", price: 35}
+            ],
+            "🍦 Ice Cream": [
+                {name: "Vanilla Ice Cream", price: 40}, {name: "Strawberry Ice Cream", price: 40}, {name: "Butterscotch Ice Cream", price: 50}, {name: "Mango Ice Cream", price: 50}
+            ],
+            "🍫 Kwality Walls": [
+                {name: "Kwality Walls Cup", price: 15}, {name: "Kwality Walls Bar", price: 35}, {name: "Kwality Walls Cone", price: 40}
+            ],
+            "➕ Extras": [
+                {name: "Extra Chutney/Sambar", price: 5}, {name: "Extra Butter", price: 10}
+            ]
+        };
+
+        // CSV Parser (More robust than Google's JSON API)
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let col = 0, row = 0;
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        async function loadDynamicData() {
+            try {
+                // CACHE-BUSTER: Forces fresh download every single time
+                const cacheBuster = new Date().getTime();
+
+                // 1. Fetch Settings (CSV format)
+                const settingsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Settings&_=${cacheBuster}`;
+                const settingsRes = await fetch(settingsUrl);
+                const settingsText = await settingsRes.text();
+                
+                if(settingsText.toLowerCase().includes("<!doctype html>")) throw new Error("Google Sheet is Private!");
+
+                const settingsRows = parseCSV(settingsText);
+                let waitTime = "15-20 mins";
+                
+                for(let i=1; i<settingsRows.length; i++) {
+                    if(settingsRows[i] && settingsRows[i][0] && settingsRows[i][0].trim() === 'Wait Time') {
+                        waitTime = settingsRows[i][1].trim();
+                    }
+                }
+                document.getElementById('wait-time-text').innerText = waitTime;
+
+                // 2. Fetch Menu (CSV format)
+                const menuUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Menu&_=${cacheBuster}`;
+                const menuRes = await fetch(menuUrl);
+                const menuText = await menuRes.text();
+                const menuRows = parseCSV(menuText);
+
+                const dynamicMenu = {};
+                
+                // Skip row 0 (headers), loop through items
+                for(let i=1; i<menuRows.length; i++) {
+                    const row = menuRows[i];
+                    if(row.length < 2) continue; // skip empty rows
+                    
+                    const category = row[0].trim();
+                    const name = row[1].trim();
+                    if(!category || !name) continue;
+
+                    let price = 0;
+                    if(row[2]) {
+                        // Extract only numbers just in case someone types "Rs. 150"
+                        const parsedPrice = parseFloat(row[2].replace(/[^0-9.]/g, ''));
+                        if(!isNaN(parsedPrice)) price = parsedPrice;
+                    }
+
+                    if(!dynamicMenu[category]) dynamicMenu[category] = [];
+                    dynamicMenu[category].push({name, price});
+                }
+
+                if(Object.keys(dynamicMenu).length > 0) {
+                    renderMenu(dynamicMenu);
+                } else {
+                    throw new Error("Parsed data was empty.");
+                }
+
+            } catch(err) {
+                console.error("⚠️ COULD NOT LOAD FROM GOOGLE SHEET. Are you sure 'Anyone with the link' is selected? Loading Fallback menu...", err);
+                renderMenu(fallbackMenuData); // Use complete fallback if sheet is private
+                document.getElementById('wait-time-text').innerText = "15-20 mins";
+            }
+        }
+
+        // Render Menu UI
+        function renderMenu(dataObj) {
+            const menuContainer = document.getElementById("menu-container");
+            document.getElementById("loading-menu").style.display = "none"; // hide spinner
+            menuContainer.innerHTML = ""; // clear
+
+            for (const [category, items] of Object.entries(dataObj)) {
+                let html = `<button class="accordion">${category} <i class="fas fa-chevron-down"></i></button><div class="panel">`;
+                items.forEach(item => {
+                    let priceDisplay = item.price > 0 ? `₹${item.price}` : 'Ask Price';
+                    html += `
+                    <div class="menu-item">
+                        <div class="item-details">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-price">${priceDisplay}</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})">Add</button>
+                    </div>`;
+                });
+                html += `</div>`;
+                menuContainer.innerHTML += html;
+            }
+
+            // Re-attach Accordion Logic
+            const accordions = document.querySelectorAll(".accordion");
+            accordions.forEach(acc => {
+                acc.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) { panel.style.maxHeight = null; panel.classList.remove("show"); } 
+                    else { panel.style.maxHeight = panel.scrollHeight + "px"; panel.classList.add("show"); }
+                });
+            });
+        }
+
+        // Initialize App on Load
+        window.onload = function() {
+            // Load Dynamic Data
+            loadDynamicData();
+
+            // QR code parsing logic
+            const urlParams = new URLSearchParams(window.location.search);
+            const tableNum = urlParams.get('table');
+            if (tableNum) {
+                document.querySelector('input[name="orderType"][value="Dine-in"]').checked = true;
+                toggleOrderFields();
+                document.getElementById('tableNumber').value = tableNum;
+            }
+        };
+
+
+        // --- REMAINING APP LOGIC (CART, CHECKOUT, STATUS) ---
+
+        function toggleOrderFields() {
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            if(orderType === "Dine-in") {
+                document.getElementById("addressField").style.display = "none";
+                document.getElementById("tableField").style.display = "block";
+            } else {
+                document.getElementById("addressField").style.display = "block";
+                document.getElementById("tableField").style.display = "none";
+            }
+        }
+
+        function checkRestaurantStatus() {
+            let options = { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', hour12: false };
+            let formatter = new Intl.DateTimeFormat([], options);
+            let timeStr = formatter.format(new Date()); 
+            let [hours, minutes] = timeStr.split(':').map(Number);
+            let currentTime = hours + (minutes / 60);
+            
+            const openTime = 11.0; 
+            const closeTime = 23.5;
+            const badge = document.getElementById("status-badge");
+
+            if (currentTime >= openTime && currentTime < closeTime) {
+                isRestaurantOpen = true;
+                badge.innerHTML = '<i class="fas fa-door-open"></i> We are OPEN (Closes at 11:30 PM)';
+                badge.className = 'status-badge status-open';
+            } else {
+                isRestaurantOpen = false;
+                badge.innerHTML = '<i class="fas fa-door-closed"></i> We are CLOSED (Opens at 11:00 AM)';
+                badge.className = 'status-badge status-closed';
+            }
+        }
+        checkRestaurantStatus();
+        setInterval(checkRestaurantStatus, 60000);
+
+        let cart = [];
+        
+        function addToCart(name, price) {
+            let existing = cart.find(i => i.name === name);
+            if(existing) existing.qty++;
+            else cart.push({name, price, qty: 1});
+            updateCartUI();
+            
+            const bottomBtn = document.querySelector('.bottom-cart-btn');
+            if(bottomBtn) {
+                bottomBtn.style.transform = "scale(1.05)";
+                setTimeout(() => bottomBtn.style.transform = "scale(1)", 200);
+            }
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(i => i.name !== name);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, i) => sum + i.qty, 0);
+            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            
+            const bottomBar = document.getElementById("bottomCartBar");
+            const bottomItemCount = document.getElementById("bottomItemCount");
+            const bottomTotalPrice = document.getElementById("bottomTotalPrice");
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cartTotalModal = document.getElementById("cart-total");
+
+            if (count > 0) {
+                bottomBar.style.display = "flex";
+                document.body.classList.add("cart-active");
+                bottomItemCount.innerText = `${count} Item${count > 1 ? 's' : ''} added`;
+                bottomTotalPrice.innerText = `Estimated Total: ₹${total}`;
+                
+                cartTotalModal.innerText = `Estimated Total: ₹${total}`;
+                cartItemsContainer.innerHTML = cart.map(i => {
+                    let itemTotal = i.price > 0 ? `₹${i.price * i.qty}` : 'TBD';
+                    return `
+                    <div class="cart-item">
+                        <span>${i.qty}x ${i.name}</span>
+                        <span>${itemTotal} <i class="fas fa-trash" style="color:red;cursor:pointer;margin-left:10px" onclick="removeFromCart('${i.name.replace(/'/g, "\\'")}')"></i></span>
+                    </div>`;
+                }).join('');
+            } else {
+                bottomBar.style.display = "none";
+                document.body.classList.remove("cart-active");
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #777;">Your cart is empty.</p>';
+                cartTotalModal.innerText = `Estimated Total: ₹0`;
+                
+                const modal = document.getElementById("cart-modal");
+                if(modal.style.display === "flex") toggleCart();
+            }
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById("cart-modal");
+            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+        }
+
+        function checkout() {
+            if(cart.length === 0) return alert("Your cart is empty!");
+            
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            const orderName = document.getElementById('orderName').value.trim();
+            const orderPhone = document.getElementById('orderPhone').value.trim();
+            
+            if(!orderName || !orderPhone) { alert("Please fill in your Name and Phone Number."); return; }
+
+            let orderLocation = "";
+            if (orderType === "Delivery") {
+                orderLocation = document.getElementById('orderAddress').value.trim();
+                if(!orderLocation) { alert("Please provide your Delivery Address."); return; }
+            } else {
+                orderLocation = document.getElementById('tableNumber').value.trim();
+                if(!orderLocation) { alert("Please provide your Table Number."); return; }
+            }
+
+            if (!isRestaurantOpen) {
+                const proceed = confirm("🚨 The restaurant is currently CLOSED. Do you still want to place this as a pre-order for when they open?");
+                if (!proceed) return;
+            }
+
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            let text = `Hello Samarth Veg, I would like to place a *${orderType.toUpperCase()}* order:\n\n*--- Order Details ---*\n`;
+            cart.forEach(i => {
+                let itemCost = i.price > 0 ? `₹${i.price * i.qty}` : 'Price on Request';
+                text += `▪ ${i.qty}x ${i.name} - ${itemCost}\n`;
+            });
+            
+            text += `\n*Estimated Subtotal:* ₹${total}\n*Payment Option:* ${paymentMethod}\n\n*--- Customer Details ---*\n*Name:* ${orderName}\n*Phone:* ${orderPhone}\n`;
+            text += orderType === "Delivery" ? `*Address:* ${orderLocation}\n` : `*Table Number:* ${orderLocation}\n`;
+            text += `\n*(Prices for unpriced items will be added by the restaurant)*\nPlease confirm my order.`;
+
+            const waLink = `https://wa.me/919595948655?text=${encodeURIComponent(text)}`;
+
+            if (paymentMethod === "UPI" && total > 0) {
+                alert(`You will be redirected to your UPI app to pay ₹${total}. Please return to the browser to send your order via WhatsApp if it doesn't open automatically!`);
+                const upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Samarth%20Veg&am=${total}&cu=INR&tn=Food%20Order`;
+                window.open(waLink, "_blank"); 
+                window.location.href = upiLink; 
+            } else {
+                window.open(waLink, "_blank");
+            }
+
+            toggleCart();
+        }
+
+        function bookTableWA() {
+            const form = document.getElementById("reservationForm");
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+            const name = document.getElementById("resName").value;
+            const guests = document.getElementById("resGuests").value;
+            const date = document.getElementById("resDate").value;
+            const time = document.getElementById("resTime").value;
+
+            const text = `Hello Samarth Veg, I would like to request a Table Reservation.\n\n*Name:* ${name}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n\nPlease confirm my booking.`;
+            window.open(`https://wa.me/919595948655?text=${encodeURIComponent(text)}`, "_blank");
+        }
+
+        function shareMenu() {
+            if (navigator.share) {
+                navigator.share({ title: 'Samarth Veg - Menu', text: 'Check out the pure veg menu & order online!', url: window.location.href }).catch(console.error);
+            } else { alert('Copy the URL from your browser to share!'); }
+        }
+
+        document.getElementById('resDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
