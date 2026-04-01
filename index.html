@@ -43,7 +43,13 @@
         .wait-time-badge i { color: var(--secondary-color); }
 
         .hero h1 { font-size: 4rem; color: var(--white); margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 10px; }
+        
+        /* Hero Rating Display */
+        .hero-rating { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; font-size: 1.2rem; }
+        .hero-rating .stars { color: #ffc107; letter-spacing: 2px; }
+        .hero-rating .rating-text { font-weight: 600; background: rgba(0,0,0,0.5); padding: 2px 10px; border-radius: 15px;}
+
         .hero-btns { display: flex; gap: 15px; justify-content: center; margin-top: 20px;}
         .btn { padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; transition: 0.3s; }
         .btn-primary { background: var(--secondary-color); color: white; }
@@ -168,6 +174,15 @@
             <h1>Samarth Veg</h1>
             <p>Authentic, Delicious, and 100% Pure Vegetarian Cuisine</p>
             <p><i class="fas fa-map-marker-alt"></i> Kothrud, Pune</p>
+            
+            <!-- NEW RATING DISPLAY -->
+            <div class="hero-rating">
+                <span class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </span>
+                <span class="rating-text">3.95 / 5 Average Rating</span>
+            </div>
+
             <div class="hero-btns">
                 <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Order Online</a>
                 <a href="#reservation" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Reserve a Table</a>
@@ -180,7 +195,8 @@
         <div class="badge"><i class="fas fa-leaf"></i> 100% Pure Veg</div>
         <div class="badge"><i class="fas fa-hands-wash"></i> Sanitized Kitchen</div>
         <div class="badge"><i class="fas fa-carrot"></i> Fresh Ingredients</div>
-        <div class="badge"><i class="fas fa-star"></i> Top Rated</div>
+        <!-- UPDATED RATING BADGE -->
+        <div class="badge"><i class="fas fa-star" style="color: gold;"></i> 3.95/5 Rated</div>
     </div>
 
     <!-- Interactive Menu Section -->
@@ -230,10 +246,10 @@
     <section class="container">
         <h2>Flavors & Ambience</h2>
         <div class="gallery-grid">
-            <img src="https://i.postimg.cc/JnFvsq0g/unnamed.jpg" alt="Restaurant Interior seating">
-            <img src="https://i.postimg.cc/3x9LyBb1/Whats-App-Image-2026-04-01-at-9-42-41-PM.jpg" alt="Paneer Dish">
-            <img src="https://i.postimg.cc/3RGCZC9V/Whats-App-Image-2026-04-01-at-9-42-40-PM.jpg" alt="Dosa">
-            <img src="https://i.postimg.cc/TY3fLkt5/Samarth-Veg-Exterior.jpg" alt="Samarth Veg Exterior">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Restaurant Interior seating">
+            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80" alt="Paneer Dish">
+            <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=500&q=80" alt="Dosa">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" alt="Samarth Veg Exterior">
         </div>
     </section>
 
@@ -406,9 +422,7 @@
                     
                     if(key === 'Wait Time') {
                         waitTime = val;
-                    } 
-                    // Dynamic Coupons Loader
-                    else if (key.toUpperCase().startsWith('COUPON:')) {
+                    } else if (key.toUpperCase().startsWith('COUPON:')) {
                         let code = key.split(':')[1].trim().toUpperCase();
                         let type = val.includes('%') ? 'percent' : 'flat';
                         let numericVal = parseFloat(val.replace(/[^0-9.]/g, ''));
@@ -523,7 +537,7 @@
         function removeFromCart(name) { 
             cart = cart.filter(i => i.name !== name); 
             if(cart.length === 0) {
-                appliedCoupon = null; // Clear coupon if cart is emptied
+                appliedCoupon = null; 
                 document.getElementById('couponCode').value = '';
                 document.getElementById('couponMessage').style.display = 'none';
             }
@@ -540,7 +554,7 @@
                 appliedCoupon = codeInput;
                 msgEl.style.display = "block";
                 msgEl.style.color = "green";
-                msgEl.innerText = `✅ Coupon '${codeInput}' applied successfully!`;
+                msgEl.innerText = `✅ Coupon '${codeInput}' applied!`;
             } else {
                 appliedCoupon = null;
                 msgEl.style.display = "block";
@@ -554,13 +568,12 @@
             const count = cart.reduce((sum, i) => sum + i.qty, 0);
             const subTotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             
-            // Calculate Discount
             let discount = 0;
             if(appliedCoupon && activeCoupons[appliedCoupon]) {
                 let coupon = activeCoupons[appliedCoupon];
                 if(coupon.type === "percent") discount = (subTotal * coupon.value) / 100;
                 else discount = coupon.value;
-                if(discount > subTotal) discount = subTotal; // Don't allow negative total
+                if(discount > subTotal) discount = subTotal; 
             }
             const finalTotal = subTotal - discount;
 
@@ -573,10 +586,8 @@
             if (count > 0) {
                 bottomBar.style.display = "flex"; document.body.classList.add("cart-active");
                 bottomItemCount.innerText = `${count} Item${count > 1 ? 's' : ''} added`; 
-                
                 bottomTotalPrice.innerText = discount > 0 ? `Total: ₹${finalTotal.toFixed(0)}` : `Estimated Total: ₹${subTotal}`;
                 
-                // Modal total display
                 let totalHtml = `Subtotal: ₹${subTotal}`;
                 if(discount > 0) {
                     totalHtml += `<br><span style="color: #2e7d32; font-size: 0.95rem;">Discount applied: -₹${discount.toFixed(0)}</span>`;
@@ -624,7 +635,6 @@
 
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             
-            // Final Math
             const subTotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             let discount = 0;
             if(appliedCoupon && activeCoupons[appliedCoupon]) {
