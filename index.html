@@ -62,7 +62,7 @@
         .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s;}
         .gallery-grid img:hover { transform: scale(1.05); }
 
-        /* Menu Section (Accordion) */
+        /* Menu Section */
         .menu-section { max-width: 900px; margin: 0 auto; }
         .menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap:10px;}
         .accordion { background-color: var(--white); color: var(--text-color); cursor: pointer; padding: 18px; width: 100%; text-align: left; border: 1px solid #ddd; outline: none; font-size: 1.2rem; font-weight: 600; transition: 0.4s; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
@@ -80,14 +80,13 @@
         .add-btn { background: var(--white); border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .add-btn:hover { background: var(--primary-color); color: white; }
 
-        /* Table Reservation Form */
+        /* Table Reservation */
         .reservation-section { background: var(--white); padding: 60px 20px; }
         .res-form { max-width: 600px; margin: 0 auto; background: var(--light-gray); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; font-family: inherit; }
         .form-group textarea { resize: vertical; }
-        
         .res-buttons { display: flex; gap: 10px; margin-top: 20px; }
         .res-btn { flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; transition: 0.3s; }
         .btn-wa { background: var(--primary-color); }
@@ -108,22 +107,28 @@
         .cart-content { background: white; width: 100%; max-width: 500px; padding: 25px; border-radius: 10px; position: relative; max-height: 90vh; overflow-y: auto; }
         .close-cart { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #777; }
         .cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; }
-        .cart-total { border-top: 2px solid #ddd; margin-top: 15px; padding-top: 10px; font-size: 1.2rem; font-weight: bold; text-align: right; color: var(--primary-color); }
         
-        /* Checkout Form inside Cart */
+        /* Coupon Section */
+        .coupon-section { margin-top: 15px; padding-top: 15px; border-top: 2px solid #ddd; }
+        .coupon-input-group { display: flex; gap: 10px; margin-bottom: 5px; }
+        .coupon-input-group input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; text-transform: uppercase; font-weight: bold;}
+        .coupon-input-group button { padding: 10px 15px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s;}
+        .coupon-input-group button:hover { background: #1b5e20; }
+        #couponMessage { font-size: 0.85rem; font-weight: 500; display: none; margin-bottom: 10px;}
+        
+        .cart-total { margin-top: 5px; font-size: 1.2rem; font-weight: bold; text-align: right; color: var(--primary-color); line-height: 1.4; }
+        
         .checkout-details { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ccc; }
         .checkout-details h4 { margin-bottom: 15px; color: var(--primary-color); }
         .order-type-options { display: flex; gap: 15px; margin-bottom: 15px; background: var(--light-gray); padding: 10px; border-radius: 8px; }
         .order-type-options label { cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 
-        /* Payment Options inside Cart */
         .payment-options { margin-top: 15px; padding: 15px; background: var(--light-gray); border-radius: 8px; }
         .payment-options h4 { margin-bottom: 10px; font-size: 1rem; color: #333; }
         .payment-options label { margin-right: 15px; cursor: pointer; font-weight: 500; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 5px; }
         .checkout-btn { width: 100%; background: #25D366; color: white; border: none; padding: 15px; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3); transition: 0.3s;}
         .checkout-btn:hover { background: #1ebe57; }
 
-        /* Reviews, Maps, Footer */
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .review-card { background: var(--white); padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
         .stars { color: gold; margin-bottom: 10px; }
@@ -133,7 +138,6 @@
         .direction-btn { background: white; color: var(--primary-color); padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
         footer { background: #222; color: white; text-align: center; padding: 20px; margin-top: 40px; padding-bottom: 30px;}
         
-        /* Floating Action Buttons */
         .fab-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 998; transition: bottom 0.3s; }
         .fab { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; color: white; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s; }
         .fab:hover { transform: scale(1.1); }
@@ -156,7 +160,6 @@
     <!-- Hero Section -->
     <section class="hero">
         <div>
-            <!-- Live Status & Wait Time Badge -->
             <div class="status-wrapper">
                 <div id="status-badge" class="status-badge">Checking Status...</div>
                 <div class="wait-time-badge"><i class="fas fa-clock"></i> Wait Time: <span id="wait-time-text">Loading...</span></div>
@@ -189,11 +192,8 @@
         </div>
 
         <div id="loading-menu"><i class="fas fa-spinner fa-spin"></i> Loading latest menu from Kitchen...</div>
-        
-        <!-- Render Menu Accordion -->
         <div id="menu-container"></div>
-        
-        <p style="text-align: center; font-size: 0.9rem; color: #888; margin-top: 20px;">*Some custom or special items (Thalis, Breads, Rice, Chinese etc.) may not have direct prices listed. Please add them to your cart and inquire about the price directly on WhatsApp!</p>
+        <p style="text-align: center; font-size: 0.9rem; color: #888; margin-top: 20px;">*Some custom or special items may not have direct prices listed. Please add them to your cart and inquire directly on WhatsApp!</p>
     </section>
 
     <!-- Table Reservation Form -->
@@ -226,53 +226,14 @@
         </div>
     </section>
 
-    <!-- Legacy & Gallery -->
-    <section class="legacy-section">
-        <h2>Our Legacy</h2>
-        <p class="legacy-text">
-            Rooted in the heart of Pune, <strong>Samarth Veg</strong> was born out of a passion for authentic Indian culinary traditions. For years, we have been serving the Kothrud community with recipes passed down through generations. Our philosophy is simple: serve food that feels like home, prepared with utmost hygiene and love. 
-        </p>
-    </section>
-
+    <!-- Gallery & Reviews -->
     <section class="container">
         <h2>Flavors & Ambience</h2>
         <div class="gallery-grid">
-            <img src="https://i.postimg.cc/Th8Csck6/Restaurant-Interior-seating.jpg" alt="Restaurant Interior seating">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Restaurant Interior seating">
             <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80" alt="Paneer Dish">
             <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=500&q=80" alt="Dosa">
-            <img src="https://i.postimg.cc/XqMnsR0N/Samarth-Veg-Exterior.jpg" alt="Samarth Veg Exterior">
-        </div>
-    </section>
-
-    <!-- User Reviews -->
-    <section class="container">
-        <h2>What Our Customers Say</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <h3>Rahul D.</h3>
-                <p>"Best pure veg restaurant in Kothrud! The Paneer Butter Masala and Butter Naan were incredibly soft. Ordering via WhatsApp is so seamless!"</p>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                <h3>Sneha P.</h3>
-                <p>"Very clean and hygienic place. The staff is extremely polite and the Maharashtrian snacks feel completely homemade."</p>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <h3>Amit K.</h3>
-                <p>"An absolute gem for family dinners. We ordered the Deluxe Punjabi Thali and Veg Crispy, and the portions were fantastic and delicious."</p>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <h3>Priya S.</h3>
-                <p>"I love how easy it is to just scan the QR on the table and place an order directly. The Jain Pav Bhaji here is the best in town!"</p>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <h3>Vikas M.</h3>
-                <p>"Prompt service, warm ambiance, and consistent taste over the years. Their South Indian breakfast items are our go-to for weekend mornings."</p>
-            </div>
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" alt="Samarth Veg Exterior">
         </div>
     </section>
 
@@ -312,6 +273,16 @@
                 <p style="text-align: center; color: #777;">Your cart is empty.</p>
             </div>
             
+            <!-- COUPON SECTION -->
+            <div class="coupon-section">
+                <div class="coupon-input-group">
+                    <input type="text" id="couponCode" placeholder="Enter Coupon Code">
+                    <button type="button" onclick="applyCoupon()">Apply</button>
+                </div>
+                <div id="couponMessage"></div>
+            </div>
+
+            <!-- TOTAL SECTION -->
             <div class="cart-total" id="cart-total">Estimated Total: ₹0</div>
 
             <!-- Customer Details Form -->
@@ -362,114 +333,52 @@
     <!-- JavaScript -->
     <script>
         // =======================================================
-        // YOUR GOOGLE SHEET ID IS INTEGRATED HERE:
-        // =======================================================
         const SHEET_ID = "1rNiNCP41QKpooyI0-ZwCg6YcRqPFPZypkTP9RfwEgzA"; 
-        
-        // 🛑 IMPORTANT: Put your actual Merchant UPI ID here (e.g., your_number@ybl)
-        const MERCHANT_UPI_ID = "your_actual_upi_id@bank"; 
+        const MERCHANT_UPI_ID = "9422231321@fam"; // UPDATED UPI ID
+        // =======================================================
 
-        // --- DYNAMIC DATA FETCHING LOGIC ---
-        
-        // The Complete Menu Fallback (Ensures all items load even if Google Sheet fails/is private!)
+        // COUPON SYSTEM 
+        // Fallback coupons (will be overridden if added to Google Sheet)
+        let activeCoupons = {
+            "WELCOME10": { type: "percent", value: 10 },
+            "FLAT50": { type: "flat", value: 50 }
+        };
+        let appliedCoupon = null; // Stores currently applied code
+
+        // Complete Menu Fallback
         const fallbackMenuData = {
-            "🥘 Tawa Specialities": [
-                {name: "Aloo Methi Dry", price: 150}, {name: "Aloo Jeera Dry", price: 150}, {name: "Bhendi Fry", price: 150}, {name: "Green Peas Fry", price: 150}, {name: "Tawa Paneer", price: 170}, {name: "Tawa Mushroom", price: 180}, {name: "Tawa Diwani", price: 170}, {name: "Tawa Pulav", price: 150}, {name: "Tawa Veg", price: 170}
-            ],
-            "🍢 Starters": [
-                {name: "Veg. Crispy", price: 150}, {name: "Paneer Crispy", price: 170}, {name: "Baby Corn Crispy", price: 150}, {name: "Paneer Pakoda", price: 150}, {name: "Chinese Bhel", price: 120}, {name: "Veg. Spring Roll", price: 150}, {name: "Veg. Manchurian Dry", price: 150}, {name: "Gobi Manchurian Dry", price: 150}, {name: "Paneer Manchurian Dry", price: 170}, {name: "Mushroom Manchurian Dry", price: 170}, {name: "Paneer Chilly Dry", price: 170}, {name: "Mushroom Chilly Dry", price: 170}, {name: "Baby Corn Chilly Dry", price: 150}, {name: "Paneer 65", price: 170}, {name: "Veg. 65", price: 150}, {name: "Gobi 65", price: 150}, {name: "Gobi Lollypop", price: 150}, {name: "Paneer Pickles", price: 170}, {name: "Paneer Tikka Dry (8 pcs)", price: 170}, {name: "Mushroom Tikka Dry (8 pcs)", price: 170}, {name: "Tandoori Aloo", price: 140}, {name: "Hara Bhara Kabab", price: 150}, {name: "Gold Coin", price: 150}, {name: "Paneer Punching Hot", price: 170}, {name: "Mushroom Lemon Hot", price: 170}
-            ],
-            "🍛 Moglai Specialities": [
-                {name: "Veg. Moglai", price: 160}, {name: "Navratna Kurma", price: 180}, {name: "Malai Kofta", price: 180}, {name: "Dum Aloo Kashmiri", price: 180}, {name: "Malai Methi Mutter", price: 160}, {name: "Malai Corn Masala", price: 160}, {name: "Mastani Moglai", price: 160}
-            ],
-            "🥗 Jain Preparation": [
-                {name: "Dal Fry (Jain)", price: 110}, {name: "Dal Palak (Jain)", price: 120}, {name: "Butter Dal Fry (Jain)", price: 120}, {name: "Dal Tadka (Jain)", price: 120}, {name: "Malai Kofta (Jain)", price: 170}, {name: "Paneer Butter Masala (Jain)", price: 170}, {name: "Paneer Makhanwala (Jain)", price: 170}, {name: "Plain Palak (Jain)", price: 130}, {name: "Palak Paneer (Jain)", price: 150}, {name: "Peas Palak (Jain)", price: 130}, {name: "Palak Corn (Jain)", price: 140}, {name: "Palak Babycorn (Jain)", price: 140}
-            ],
-            "🍲 Dal Specialities": [
-                {name: "Plain Dal", price: 100}, {name: "Dal Fry", price: 110}, {name: "Dal Palak", price: 120}, {name: "Butter Dal Fry", price: 120}, {name: "Dal Tadka", price: 120}
-            ],
-            "🍽️ Thalis": [
-                {name: "Punjabi Thali (Limited)", price: 0}, {name: "Punjabi Thali (Regular)", price: 0}, {name: "Deluxe Punjabi Thali", price: 0}
-            ],
-            "🍜 Soups & Salads": [
-                {name: "Cream of Tomato Soup", price: 70}, {name: "Cream of Palak Soup", price: 90}, {name: "Cream of Mushroom Soup", price: 90}, {name: "Sweet Corn Soup (Plain/Veg)", price: 90}, {name: "Hot & Sour Soup", price: 90}, {name: "Manchow Soup", price: 90}, {name: "Lungfung Soup", price: 90}, {name: "Talumin Soup", price: 90}, {name: "Veg Clear Soup", price: 70}, {name: "Green Salad", price: 60}, {name: "Cucumber Salad", price: 60}, {name: "Tomato Salad", price: 60}
-            ],
-            "🥪 Sandwiches & Burgers": [
-                {name: "Bread Butter", price: 40}, {name: "Veg Sandwich", price: 60}, {name: "Cheese Sandwich", price: 80}, {name: "Club Sandwich", price: 90}, {name: "Veg Burger", price: 70}, {name: "Cheese Toast Sandwich", price: 85}
-            ],
-            "🥣 Raitas": [
-                {name: "Aloo Raita", price: 60}, {name: "Cucumber Raita", price: 60}, {name: "Mix Veg Raita", price: 60}, {name: "Tomato Raita", price: 60}, {name: "Pineapple Raita", price: 60}, {name: "Boondi Raita", price: 60}, {name: "Kashmiri Raita", price: 70}
-            ],
-            "🍛 Pav Bhaji": [
-                {name: "Amul Pav Bhaji", price: 90}, {name: "Jain Pav Bhaji", price: 100}, {name: "Cheese Pav Bhaji", price: 115}, {name: "Paneer Pav Bhaji", price: 115}, {name: "Special Pav Bhaji", price: 115}
-            ],
-            "🍕 Pizzas": [
-                {name: "Onion Pizza", price: 150}, {name: "Capsicum Pizza", price: 150}, {name: "Veg Pizza", price: 150}, {name: "Mushroom Pizza", price: 150}, {name: "Cheese Pizza", price: 150}, {name: "Paneer Pizza", price: 150}, {name: "Corn Pizza", price: 150}
-            ],
-            "🍚 Rice Varieties": [
-                {name: "Plain Rice", price: 0}, {name: "Jeera Rice", price: 0}, {name: "Veg Pulav", price: 0}, {name: "Paneer Pulav", price: 0}, {name: "Veg Biryani", price: 0}, {name: "Hyderabadi Biryani", price: 0}, {name: "Veg Fried Rice", price: 0}, {name: "Schezwan Fried Rice", price: 0}, {name: "Hong Kong Fried Rice", price: 0}, {name: "Mushroom Fried Rice", price: 0}, {name: "Triple Schezwan Rice", price: 0}, {name: "Manchurian Rice", price: 0}, {name: "Dal Khichdi", price: 0}
-            ],
-            "🍜 Chinese Dishes": [
-                {name: "Veg Manchurian Gravy", price: 0}, {name: "Paneer Manchurian Gravy", price: 0}, {name: "Mushroom Manchurian Gravy", price: 0}, {name: "Gobi Manchurian Gravy", price: 0}, {name: "Paneer Chilly Fry", price: 0}, {name: "Mushroom Chilly Fry", price: 0}, {name: "Baby Corn Chilly Fry", price: 0}, {name: "Sweet & Sour Veg", price: 0}, {name: "Schezwan Veg", price: 0}, {name: "Paneer in Schezwan Sauce", price: 0}
-            ],
-            "🫓 Tandoor Varieties": [
-                {name: "Chapati", price: 0}, {name: "Roti", price: 0}, {name: "Butter Roti", price: 0}, {name: "Naan", price: 0}, {name: "Butter Naan", price: 0}, {name: "Garlic Naan", price: 0}, {name: "Kulcha", price: 0}, {name: "Stuffed Paratha", price: 0}, {name: "Paneer Paratha", price: 0}, {name: "Bhatura", price: 0}, {name: "Puri", price: 0}
-            ],
-            "🍝 Noodles": [
-                {name: "Hakka Noodles", price: 0}, {name: "Schezwan Noodles", price: 0}, {name: "Singapuri Noodles", price: 0}, {name: "American Chopsuey", price: 0}, {name: "Fried Rice with Noodles", price: 0}
-            ],
-            "🍛 South Indian Snacks": [
-                {name: "Idli Sambar", price: 50}, {name: "Medu Wada", price: 60}, {name: "Masala Dosa", price: 75}, {name: "Cheese Dosa", price: 100}, {name: "Uttappa (Varieties)", price: 65}, {name: "Upma", price: 40}
-            ],
-            "🍲 Maharashtrian Snacks": [
-                {name: "Poha", price: 40}, {name: "Batata Wada", price: 60}, {name: "Sabudana Wada", price: 60}, {name: "Puri Bhaji", price: 80}, {name: "Kachori", price: 60}
-            ],
-            "☕ Hot Beverages": [
-                {name: "Tea", price: 20}, {name: "Coffee", price: 30}, {name: "Hot Chocolate", price: 35}
-            ],
-            "🧃 Fresh Juices": [
-                {name: "Mosambi Juice", price: 70}, {name: "Orange Juice", price: 70}, {name: "Pineapple Juice", price: 70}, {name: "Mango Juice", price: 90}, {name: "Pomegranate Juice", price: 90}
-            ],
-            "🍨 Desserts & Sweets": [
-                {name: "Shrikhand", price: 50}, {name: "Amrakhand", price: 50}, {name: "Gulab Jamun", price: 50}, {name: "Fruit Salad", price: 60}
-            ],
-            "🍧 Kulfi": [
-                {name: "Malai Kulfi", price: 50}, {name: "Pista Kulfi", price: 50}, {name: "Mango Kulfi", price: 50}
-            ],
-            "🥤 Milkshakes": [
-                {name: "Vanilla Milkshake", price: 90}, {name: "Chocolate Milkshake", price: 90}, {name: "Mango Milkshake", price: 90}, {name: "Strawberry Milkshake", price: 90}, {name: "Special Mastani", price: 130}
-            ],
-            "🥤 Cold Drinks": [
-                {name: "Soft Drinks", price: 26}, {name: "Lassi", price: 50}, {name: "Kokam", price: 35}, {name: "Buttermilk", price: 35}
-            ],
-            "🍦 Ice Cream": [
-                {name: "Vanilla Ice Cream", price: 40}, {name: "Strawberry Ice Cream", price: 40}, {name: "Butterscotch Ice Cream", price: 50}, {name: "Mango Ice Cream", price: 50}
-            ],
-            "🍫 Kwality Walls": [
-                {name: "Kwality Walls Cup", price: 15}, {name: "Kwality Walls Bar", price: 35}, {name: "Kwality Walls Cone", price: 40}
-            ],
-            "➕ Extras": [
-                {name: "Extra Chutney/Sambar", price: 5}, {name: "Extra Butter", price: 10}
-            ]
+            "🥘 Tawa Specialities": [{name: "Aloo Methi Dry", price: 150}, {name: "Aloo Jeera Dry", price: 150}, {name: "Bhendi Fry", price: 150}, {name: "Green Peas Fry", price: 150}, {name: "Tawa Paneer", price: 170}, {name: "Tawa Mushroom", price: 180}, {name: "Tawa Diwani", price: 170}, {name: "Tawa Pulav", price: 150}, {name: "Tawa Veg", price: 170}],
+            "🍢 Starters": [{name: "Veg. Crispy", price: 150}, {name: "Paneer Crispy", price: 170}, {name: "Baby Corn Crispy", price: 150}, {name: "Paneer Pakoda", price: 150}, {name: "Chinese Bhel", price: 120}, {name: "Veg. Spring Roll", price: 150}, {name: "Veg. Manchurian Dry", price: 150}, {name: "Gobi Manchurian Dry", price: 150}, {name: "Paneer Manchurian Dry", price: 170}, {name: "Mushroom Manchurian Dry", price: 170}, {name: "Paneer Chilly Dry", price: 170}, {name: "Mushroom Chilly Dry", price: 170}, {name: "Baby Corn Chilly Dry", price: 150}, {name: "Paneer 65", price: 170}, {name: "Veg. 65", price: 150}, {name: "Gobi 65", price: 150}, {name: "Gobi Lollypop", price: 150}, {name: "Paneer Pickles", price: 170}, {name: "Paneer Tikka Dry", price: 170}, {name: "Mushroom Tikka Dry", price: 170}, {name: "Tandoori Aloo", price: 140}, {name: "Hara Bhara Kabab", price: 150}, {name: "Gold Coin", price: 150}],
+            "🍛 Moglai Specialities": [{name: "Veg. Moglai", price: 160}, {name: "Navratna Kurma", price: 180}, {name: "Malai Kofta", price: 180}, {name: "Dum Aloo Kashmiri", price: 180}, {name: "Malai Methi Mutter", price: 160}, {name: "Malai Corn Masala", price: 160}, {name: "Mastani Moglai", price: 160}],
+            "🥗 Jain Preparation": [{name: "Dal Fry (Jain)", price: 110}, {name: "Dal Palak (Jain)", price: 120}, {name: "Butter Dal Fry (Jain)", price: 120}, {name: "Dal Tadka (Jain)", price: 120}, {name: "Malai Kofta (Jain)", price: 170}, {name: "Paneer Butter Masala (Jain)", price: 170}, {name: "Paneer Makhanwala (Jain)", price: 170}, {name: "Plain Palak (Jain)", price: 130}, {name: "Palak Paneer (Jain)", price: 150}],
+            "🍲 Dal Specialities": [{name: "Plain Dal", price: 100}, {name: "Dal Fry", price: 110}, {name: "Dal Palak", price: 120}, {name: "Butter Dal Fry", price: 120}, {name: "Dal Tadka", price: 120}],
+            "🍽️ Thalis": [{name: "Punjabi Thali (Limited)", price: 0}, {name: "Punjabi Thali (Regular)", price: 0}, {name: "Deluxe Punjabi Thali", price: 0}],
+            "🍜 Soups & Salads": [{name: "Tomato Soup", price: 70}, {name: "Palak Soup", price: 90}, {name: "Mushroom Soup", price: 90}, {name: "Sweet Corn Soup", price: 90}, {name: "Hot & Sour Soup", price: 90}, {name: "Manchow Soup", price: 90}, {name: "Green Salad", price: 60}, {name: "Cucumber Salad", price: 60}],
+            "🥪 Sandwiches & Burgers": [{name: "Bread Butter", price: 40}, {name: "Veg Sandwich", price: 60}, {name: "Cheese Sandwich", price: 80}, {name: "Club Sandwich", price: 90}, {name: "Veg Burger", price: 70}, {name: "Cheese Toast Sandwich", price: 85}],
+            "🥣 Raitas": [{name: "Aloo Raita", price: 60}, {name: "Cucumber Raita", price: 60}, {name: "Mix Veg Raita", price: 60}, {name: "Tomato Raita", price: 60}, {name: "Pineapple Raita", price: 60}, {name: "Boondi Raita", price: 60}, {name: "Kashmiri Raita", price: 70}],
+            "🍛 Pav Bhaji": [{name: "Amul Pav Bhaji", price: 90}, {name: "Jain Pav Bhaji", price: 100}, {name: "Cheese Pav Bhaji", price: 115}, {name: "Paneer Pav Bhaji", price: 115}, {name: "Special Pav Bhaji", price: 115}],
+            "🍕 Pizzas": [{name: "Onion Pizza", price: 150}, {name: "Capsicum Pizza", price: 150}, {name: "Veg Pizza", price: 150}, {name: "Mushroom Pizza", price: 150}, {name: "Cheese Pizza", price: 150}, {name: "Paneer Pizza", price: 150}, {name: "Corn Pizza", price: 150}],
+            "🍚 Rice Varieties": [{name: "Plain Rice", price: 0}, {name: "Jeera Rice", price: 0}, {name: "Veg Pulav", price: 0}, {name: "Paneer Pulav", price: 0}, {name: "Veg Biryani", price: 0}, {name: "Hyderabadi Biryani", price: 0}, {name: "Veg Fried Rice", price: 0}, {name: "Schezwan Fried Rice", price: 0}, {name: "Triple Schezwan Rice", price: 0}, {name: "Dal Khichdi", price: 0}],
+            "🍜 Chinese Dishes": [{name: "Veg Manchurian Gravy", price: 0}, {name: "Paneer Manchurian Gravy", price: 0}, {name: "Paneer Chilly Fry", price: 0}, {name: "Schezwan Veg", price: 0}],
+            "🫓 Tandoor Varieties": [{name: "Chapati", price: 0}, {name: "Roti", price: 0}, {name: "Butter Roti", price: 0}, {name: "Naan", price: 0}, {name: "Butter Naan", price: 0}, {name: "Garlic Naan", price: 0}, {name: "Kulcha", price: 0}, {name: "Stuffed Paratha", price: 0}],
+            "🍝 Noodles": [{name: "Hakka Noodles", price: 0}, {name: "Schezwan Noodles", price: 0}, {name: "Singapuri Noodles", price: 0}, {name: "American Chopsuey", price: 0}],
+            "🍛 South Indian Snacks": [{name: "Idli Sambar", price: 50}, {name: "Medu Wada", price: 60}, {name: "Masala Dosa", price: 75}, {name: "Cheese Dosa", price: 100}, {name: "Uttappa", price: 65}, {name: "Upma", price: 40}],
+            "🍲 Maharashtrian Snacks": [{name: "Poha", price: 40}, {name: "Batata Wada", price: 60}, {name: "Sabudana Wada", price: 60}, {name: "Puri Bhaji", price: 80}, {name: "Kachori", price: 60}],
+            "☕ Beverages": [{name: "Tea", price: 20}, {name: "Coffee", price: 30}, {name: "Hot Chocolate", price: 35}, {name: "Mosambi Juice", price: 70}, {name: "Mango Juice", price: 90}, {name: "Lassi", price: 50}],
+            "🍨 Desserts": [{name: "Shrikhand", price: 50}, {name: "Amrakhand", price: 50}, {name: "Gulab Jamun", price: 50}, {name: "Malai Kulfi", price: 50}, {name: "Vanilla Ice Cream", price: 40}]
         };
 
-        // CSV Parser (More robust than Google's JSON API)
         function parseCSV(str) {
-            const arr = [];
-            let quote = false;
-            let col = 0, row = 0;
+            const arr = []; let quote = false; let col = 0, row = 0;
             for (let c = 0; c < str.length; c++) {
                 let cc = str[c], nc = str[c+1];
-                arr[row] = arr[row] || [];
-                arr[row][col] = arr[row][col] || '';
-
+                arr[row] = arr[row] || []; arr[row][col] = arr[row][col] || '';
                 if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
                 if (cc == '"') { quote = !quote; continue; }
                 if (cc == ',' && !quote) { ++col; continue; }
                 if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
                 if (cc == '\n' && !quote) { ++row; col = 0; continue; }
                 if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-
                 arr[row][col] += cc;
             }
             return arr;
@@ -477,119 +386,100 @@
 
         async function loadDynamicData() {
             try {
-                // CACHE-BUSTER: Forces fresh download every single time
                 const cacheBuster = new Date().getTime();
-
-                // 1. Fetch Settings (CSV format)
+                
+                // Fetch Settings & Coupons
                 const settingsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Settings&_=${cacheBuster}`;
                 const settingsRes = await fetch(settingsUrl);
                 const settingsText = await settingsRes.text();
-                
                 if(settingsText.toLowerCase().includes("<!doctype html>")) throw new Error("Google Sheet is Private!");
-
+                
                 const settingsRows = parseCSV(settingsText);
                 let waitTime = "15-20 mins";
                 
                 for(let i=1; i<settingsRows.length; i++) {
-                    if(settingsRows[i] && settingsRows[i][0] && settingsRows[i][0].trim() === 'Wait Time') {
-                        waitTime = settingsRows[i][1].trim();
+                    if(!settingsRows[i] || !settingsRows[i][0]) continue;
+                    let key = settingsRows[i][0].trim();
+                    let val = settingsRows[i][1] ? settingsRows[i][1].trim() : "";
+                    
+                    if(key === 'Wait Time') {
+                        waitTime = val;
+                    } 
+                    // Dynamic Coupons Loader
+                    else if (key.toUpperCase().startsWith('COUPON:')) {
+                        let code = key.split(':')[1].trim().toUpperCase();
+                        let type = val.includes('%') ? 'percent' : 'flat';
+                        let numericVal = parseFloat(val.replace(/[^0-9.]/g, ''));
+                        if(!isNaN(numericVal)) activeCoupons[code] = { type: type, value: numericVal };
                     }
                 }
                 document.getElementById('wait-time-text').innerText = waitTime;
 
-                // 2. Fetch Menu (CSV format)
+                // Fetch Menu
                 const menuUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Menu&_=${cacheBuster}`;
                 const menuRes = await fetch(menuUrl);
                 const menuText = await menuRes.text();
                 const menuRows = parseCSV(menuText);
-
                 const dynamicMenu = {};
                 
-                // Skip row 0 (headers), loop through items
                 for(let i=1; i<menuRows.length; i++) {
                     const row = menuRows[i];
-                    if(row.length < 2) continue; // skip empty rows
-                    
-                    const category = row[0].trim();
-                    const name = row[1].trim();
+                    if(row.length < 2) continue; 
+                    const category = row[0].trim(); const name = row[1].trim();
                     if(!category || !name) continue;
-
                     let price = 0;
                     if(row[2]) {
-                        // Extract only numbers just in case someone types "Rs. 150"
                         const parsedPrice = parseFloat(row[2].replace(/[^0-9.]/g, ''));
                         if(!isNaN(parsedPrice)) price = parsedPrice;
                     }
-
                     if(!dynamicMenu[category]) dynamicMenu[category] = [];
                     dynamicMenu[category].push({name, price});
                 }
-
-                if(Object.keys(dynamicMenu).length > 0) {
-                    renderMenu(dynamicMenu);
-                } else {
-                    throw new Error("Parsed data was empty.");
-                }
-
+                if(Object.keys(dynamicMenu).length > 0) renderMenu(dynamicMenu);
+                else throw new Error("Parsed data empty.");
             } catch(err) {
-                console.error("⚠️ COULD NOT LOAD FROM GOOGLE SHEET. Are you sure 'Anyone with the link' is selected? Loading Fallback menu...", err);
-                renderMenu(fallbackMenuData); // Use complete fallback if sheet is private
+                console.error("⚠️ Fallback active:", err);
+                renderMenu(fallbackMenuData); 
                 document.getElementById('wait-time-text').innerText = "15-20 mins";
             }
         }
 
-        // Render Menu UI
         function renderMenu(dataObj) {
             const menuContainer = document.getElementById("menu-container");
-            document.getElementById("loading-menu").style.display = "none"; // hide spinner
-            menuContainer.innerHTML = ""; // clear
-
+            document.getElementById("loading-menu").style.display = "none";
+            menuContainer.innerHTML = "";
             for (const [category, items] of Object.entries(dataObj)) {
                 let html = `<button class="accordion">${category} <i class="fas fa-chevron-down"></i></button><div class="panel">`;
                 items.forEach(item => {
                     let priceDisplay = item.price > 0 ? `₹${item.price}` : 'Ask Price';
                     html += `
                     <div class="menu-item">
-                        <div class="item-details">
-                            <span class="item-name">${item.name}</span>
-                            <span class="item-price">${priceDisplay}</span>
-                        </div>
+                        <div class="item-details"><span class="item-name">${item.name}</span><span class="item-price">${priceDisplay}</span></div>
                         <button class="add-btn" onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})">Add</button>
                     </div>`;
                 });
                 html += `</div>`;
                 menuContainer.innerHTML += html;
             }
-
-            // Re-attach Accordion Logic
             const accordions = document.querySelectorAll(".accordion");
             accordions.forEach(acc => {
                 acc.addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    const panel = this.nextElementSibling;
+                    this.classList.toggle("active"); const panel = this.nextElementSibling;
                     if (panel.style.maxHeight) { panel.style.maxHeight = null; panel.classList.remove("show"); } 
                     else { panel.style.maxHeight = panel.scrollHeight + "px"; panel.classList.add("show"); }
                 });
             });
         }
 
-        // Initialize App on Load
         window.onload = function() {
-            // Load Dynamic Data
             loadDynamicData();
-
-            // QR code parsing logic
             const urlParams = new URLSearchParams(window.location.search);
             const tableNum = urlParams.get('table');
             if (tableNum) {
                 document.querySelector('input[name="orderType"][value="Dine-in"]').checked = true;
-                toggleOrderFields();
-                document.getElementById('tableNumber').value = tableNum;
+                toggleOrderFields(); document.getElementById('tableNumber').value = tableNum;
             }
         };
-
-
-        // --- REMAINING APP LOGIC (CART, CHECKOUT, STATUS) ---
 
         function toggleOrderFields() {
             const orderType = document.querySelector('input[name="orderType"]:checked').value;
@@ -608,48 +498,70 @@
             let timeStr = formatter.format(new Date()); 
             let [hours, minutes] = timeStr.split(':').map(Number);
             let currentTime = hours + (minutes / 60);
-            
-            const openTime = 11.0; 
-            const closeTime = 23.5;
+            const openTime = 11.0; const closeTime = 23.5;
             const badge = document.getElementById("status-badge");
-
             if (currentTime >= openTime && currentTime < closeTime) {
-                isRestaurantOpen = true;
-                badge.innerHTML = '<i class="fas fa-door-open"></i> We are OPEN (Closes at 11:30 PM)';
-                badge.className = 'status-badge status-open';
+                isRestaurantOpen = true; badge.innerHTML = '<i class="fas fa-door-open"></i> We are OPEN (Closes at 11:30 PM)'; badge.className = 'status-badge status-open';
             } else {
-                isRestaurantOpen = false;
-                badge.innerHTML = '<i class="fas fa-door-closed"></i> We are CLOSED (Opens at 11:00 AM)';
-                badge.className = 'status-badge status-closed';
+                isRestaurantOpen = false; badge.innerHTML = '<i class="fas fa-door-closed"></i> We are CLOSED (Opens at 11:00 AM)'; badge.className = 'status-badge status-closed';
             }
         }
-        checkRestaurantStatus();
-        setInterval(checkRestaurantStatus, 60000);
+        checkRestaurantStatus(); setInterval(checkRestaurantStatus, 60000);
 
         let cart = [];
         
         function addToCart(name, price) {
             let existing = cart.find(i => i.name === name);
-            if(existing) existing.qty++;
-            else cart.push({name, price, qty: 1});
+            if(existing) existing.qty++; else cart.push({name, price, qty: 1});
             updateCartUI();
-            
             const bottomBtn = document.querySelector('.bottom-cart-btn');
-            if(bottomBtn) {
-                bottomBtn.style.transform = "scale(1.05)";
-                setTimeout(() => bottomBtn.style.transform = "scale(1)", 200);
-            }
+            if(bottomBtn) { bottomBtn.style.transform = "scale(1.05)"; setTimeout(() => bottomBtn.style.transform = "scale(1)", 200); }
         }
 
-        function removeFromCart(name) {
-            cart = cart.filter(i => i.name !== name);
+        function removeFromCart(name) { 
+            cart = cart.filter(i => i.name !== name); 
+            if(cart.length === 0) {
+                appliedCoupon = null; // Clear coupon if cart is emptied
+                document.getElementById('couponCode').value = '';
+                document.getElementById('couponMessage').style.display = 'none';
+            }
+            updateCartUI(); 
+        }
+
+        function applyCoupon() {
+            let codeInput = document.getElementById('couponCode').value.trim().toUpperCase();
+            let msgEl = document.getElementById('couponMessage');
+            
+            if(!codeInput) return;
+            
+            if(activeCoupons[codeInput]) {
+                appliedCoupon = codeInput;
+                msgEl.style.display = "block";
+                msgEl.style.color = "green";
+                msgEl.innerText = `✅ Coupon '${codeInput}' applied successfully!`;
+            } else {
+                appliedCoupon = null;
+                msgEl.style.display = "block";
+                msgEl.style.color = "red";
+                msgEl.innerText = "❌ Invalid or expired coupon code.";
+            }
             updateCartUI();
         }
 
         function updateCartUI() {
             const count = cart.reduce((sum, i) => sum + i.qty, 0);
-            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const subTotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             
+            // Calculate Discount
+            let discount = 0;
+            if(appliedCoupon && activeCoupons[appliedCoupon]) {
+                let coupon = activeCoupons[appliedCoupon];
+                if(coupon.type === "percent") discount = (subTotal * coupon.value) / 100;
+                else discount = coupon.value;
+                if(discount > subTotal) discount = subTotal; // Don't allow negative total
+            }
+            const finalTotal = subTotal - discount;
+
             const bottomBar = document.getElementById("bottomCartBar");
             const bottomItemCount = document.getElementById("bottomItemCount");
             const bottomTotalPrice = document.getElementById("bottomTotalPrice");
@@ -657,35 +569,35 @@
             const cartTotalModal = document.getElementById("cart-total");
 
             if (count > 0) {
-                bottomBar.style.display = "flex";
-                document.body.classList.add("cart-active");
-                bottomItemCount.innerText = `${count} Item${count > 1 ? 's' : ''} added`;
-                bottomTotalPrice.innerText = `Estimated Total: ₹${total}`;
+                bottomBar.style.display = "flex"; document.body.classList.add("cart-active");
+                bottomItemCount.innerText = `${count} Item${count > 1 ? 's' : ''} added`; 
                 
-                cartTotalModal.innerText = `Estimated Total: ₹${total}`;
+                bottomTotalPrice.innerText = discount > 0 ? `Total: ₹${finalTotal.toFixed(0)}` : `Estimated Total: ₹${subTotal}`;
+                
+                // Modal total display
+                let totalHtml = `Subtotal: ₹${subTotal}`;
+                if(discount > 0) {
+                    totalHtml += `<br><span style="color: #2e7d32; font-size: 0.95rem;">Discount applied: -₹${discount.toFixed(0)}</span>`;
+                    totalHtml += `<br>Grand Total: ₹${finalTotal.toFixed(0)}`;
+                } else {
+                    totalHtml += `<br>Grand Total: ₹${finalTotal}`;
+                }
+                cartTotalModal.innerHTML = totalHtml;
+
                 cartItemsContainer.innerHTML = cart.map(i => {
                     let itemTotal = i.price > 0 ? `₹${i.price * i.qty}` : 'TBD';
-                    return `
-                    <div class="cart-item">
-                        <span>${i.qty}x ${i.name}</span>
-                        <span>${itemTotal} <i class="fas fa-trash" style="color:red;cursor:pointer;margin-left:10px" onclick="removeFromCart('${i.name.replace(/'/g, "\\'")}')"></i></span>
-                    </div>`;
+                    return `<div class="cart-item"><span>${i.qty}x ${i.name}</span><span>${itemTotal} <i class="fas fa-trash" style="color:red;cursor:pointer;margin-left:10px" onclick="removeFromCart('${i.name.replace(/'/g, "\\'")}')"></i></span></div>`;
                 }).join('');
             } else {
-                bottomBar.style.display = "none";
-                document.body.classList.remove("cart-active");
+                bottomBar.style.display = "none"; document.body.classList.remove("cart-active");
                 cartItemsContainer.innerHTML = '<p style="text-align: center; color: #777;">Your cart is empty.</p>';
                 cartTotalModal.innerText = `Estimated Total: ₹0`;
-                
                 const modal = document.getElementById("cart-modal");
                 if(modal.style.display === "flex") toggleCart();
             }
         }
 
-        function toggleCart() {
-            const modal = document.getElementById("cart-modal");
-            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
-        }
+        function toggleCart() { const modal = document.getElementById("cart-modal"); modal.style.display = modal.style.display === "flex" ? "none" : "flex"; }
 
         function checkout() {
             if(cart.length === 0) return alert("Your cart is empty!");
@@ -695,7 +607,6 @@
             const orderPhone = document.getElementById('orderPhone').value.trim();
             
             if(!orderName || !orderPhone) { alert("Please fill in your Name and Phone Number."); return; }
-
             let orderLocation = "";
             if (orderType === "Delivery") {
                 orderLocation = document.getElementById('orderAddress').value.trim();
@@ -704,57 +615,55 @@
                 orderLocation = document.getElementById('tableNumber').value.trim();
                 if(!orderLocation) { alert("Please provide your Table Number."); return; }
             }
-
             if (!isRestaurantOpen) {
                 const proceed = confirm("🚨 The restaurant is currently CLOSED. Do you still want to place this as a pre-order for when they open?");
                 if (!proceed) return;
             }
 
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            
+            // Final Math
+            const subTotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            let discount = 0;
+            if(appliedCoupon && activeCoupons[appliedCoupon]) {
+                let coupon = activeCoupons[appliedCoupon];
+                discount = coupon.type === "percent" ? (subTotal * coupon.value) / 100 : coupon.value;
+                if(discount > subTotal) discount = subTotal;
+            }
+            const finalTotal = subTotal - discount;
 
             let text = `Hello Samarth Veg, I would like to place a *${orderType.toUpperCase()}* order:\n\n*--- Order Details ---*\n`;
-            cart.forEach(i => {
-                let itemCost = i.price > 0 ? `₹${i.price * i.qty}` : 'Price on Request';
-                text += `▪ ${i.qty}x ${i.name} - ${itemCost}\n`;
-            });
+            cart.forEach(i => { let itemCost = i.price > 0 ? `₹${i.price * i.qty}` : 'Price on Request'; text += `▪ ${i.qty}x ${i.name} - ${itemCost}\n`; });
             
-            text += `\n*Estimated Subtotal:* ₹${total}\n*Payment Option:* ${paymentMethod}\n\n*--- Customer Details ---*\n*Name:* ${orderName}\n*Phone:* ${orderPhone}\n`;
+            text += `\n*Subtotal:* ₹${subTotal}`;
+            if(discount > 0) text += `\n*Discount (${appliedCoupon}):* -₹${discount.toFixed(0)}`;
+            text += `\n*Grand Total:* ₹${finalTotal.toFixed(0)}\n*Payment Option:* ${paymentMethod}\n\n*--- Customer Details ---*\n*Name:* ${orderName}\n*Phone:* ${orderPhone}\n`;
             text += orderType === "Delivery" ? `*Address:* ${orderLocation}\n` : `*Table Number:* ${orderLocation}\n`;
             text += `\n*(Prices for unpriced items will be added by the restaurant)*\nPlease confirm my order.`;
 
             const waLink = `https://wa.me/919595948655?text=${encodeURIComponent(text)}`;
-
-            if (paymentMethod === "UPI" && total > 0) {
-                alert(`You will be redirected to your UPI app to pay ₹${total}. Please return to the browser to send your order via WhatsApp if it doesn't open automatically!`);
-                const upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Samarth%20Veg&am=${total}&cu=INR&tn=Food%20Order`;
-                window.open(waLink, "_blank"); 
-                window.location.href = upiLink; 
-            } else {
-                window.open(waLink, "_blank");
-            }
-
+            if (paymentMethod === "UPI" && finalTotal > 0) {
+                alert(`You will be redirected to your UPI app to pay ₹${finalTotal.toFixed(0)}. Please return to the browser to send your order via WhatsApp if it doesn't open automatically!`);
+                const upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Samarth%20Veg&am=${finalTotal.toFixed(2)}&cu=INR&tn=Food%20Order`;
+                window.open(waLink, "_blank"); window.location.href = upiLink; 
+            } else { window.open(waLink, "_blank"); }
+            
             toggleCart();
         }
 
         function bookTableWA() {
             const form = document.getElementById("reservationForm");
             if (!form.checkValidity()) { form.reportValidity(); return; }
-            const name = document.getElementById("resName").value;
-            const guests = document.getElementById("resGuests").value;
-            const date = document.getElementById("resDate").value;
-            const time = document.getElementById("resTime").value;
-
+            const name = document.getElementById("resName").value; const guests = document.getElementById("resGuests").value;
+            const date = document.getElementById("resDate").value; const time = document.getElementById("resTime").value;
             const text = `Hello Samarth Veg, I would like to request a Table Reservation.\n\n*Name:* ${name}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n\nPlease confirm my booking.`;
             window.open(`https://wa.me/919595948655?text=${encodeURIComponent(text)}`, "_blank");
         }
 
         function shareMenu() {
-            if (navigator.share) {
-                navigator.share({ title: 'Samarth Veg - Menu', text: 'Check out the pure veg menu & order online!', url: window.location.href }).catch(console.error);
+            if (navigator.share) { navigator.share({ title: 'Samarth Veg', text: 'Check out the pure veg menu & order online!', url: window.location.href }).catch(console.error);
             } else { alert('Copy the URL from your browser to share!'); }
         }
-
         document.getElementById('resDate').min = new Date().toISOString().split('T')[0];
     </script>
 </body>
