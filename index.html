@@ -355,7 +355,8 @@
                 <p style="font-size: 0.9rem; color: var(--text-color);">We've attempted to open your UPI app. Once your payment is successful, please return here and click the button below to confirm your order with the kitchen.</p>
             </div>
 
-            <a id="wa-send-btn" href="#" target="_blank" class="checkout-btn" style="text-decoration: none; width: 100%; display: flex; justify-content: center; margin-bottom: 15px;"><i class="fab fa-whatsapp"></i> Send Order to Kitchen</a>
+            <!-- BUTTON NO LONGER HAS HREF. IT USES ONCLICK TO TRIGGER DATABASE & WHATSAPP -->
+            <button id="wa-send-btn" class="checkout-btn" style="text-decoration: none; width: 100%; display: flex; justify-content: center; margin-bottom: 15px;"><i class="fab fa-whatsapp"></i> Send Order to Kitchen</button>
             
             <button onclick="closeSuccessModal()" style="background: none; border: none; color: var(--primary-color); text-decoration: underline; cursor: pointer; font-size: 0.95rem;">Close & Back to Menu</button>
         </div>
@@ -393,6 +394,10 @@
         let customerLng = null;
         let isRestaurantOpen = true;
         let cart = [];
+        
+        // NEW VARIABLES FOR THE BUTTON TIMING FIX
+        let pendingOrderData = null;
+        let pendingWaLink = "";
 
         // Complete Menu Fallback (Triggers if Google Sheet fails)
         const fallbackMenuData = {
@@ -650,6 +655,7 @@
 
         function toggleCart() { const modal = document.getElementById("cart-modal"); modal.style.display = modal.style.display === "flex" ? "none" : "flex"; }
 
+        // --- CHECKOUT LOGIC ---
         function checkout() {
             if(cart.length === 0) return alert("Your cart is empty!");
             
@@ -682,29 +688,22 @@
             const finalTotal = subTotal - discount;
             let itemsString = cart.map(i => `${i.qty}x ${i.name}`).join(", ");
 
-            // --- GOOGLE SHEETS / PORTER TRACKER POST ---
-            if(ORDER_TRACKING_URL && ORDER_TRACKING_URL !== "YOUR_WEB_APP_URL_HERE") {
-                const orderData = {
-                    orderType: orderType,
-                    orderName: orderName,
-                    orderPhone: orderPhone,
-                    orderLocation: orderLocation,
-                    lat: customerLat,                      // SENDS GPS FOR PORTER
-                    lng: customerLng,                      // SENDS GPS FOR PORTER
-                    triggerPorter: orderType === "Delivery", // TRIGGER FLAG FOR APPS SCRIPT
-                    items: itemsString,
-                    total: finalTotal.toFixed(0),
-                    coupon: appliedCoupon ? `${appliedCoupon} (-₹${discount.toFixed(0)})` : "None",
-                    paymentMethod: paymentMethod
-                };
-                fetch(ORDER_TRACKING_URL, {
-                    method: 'POST', mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(orderData)
-                }).catch(e => console.log("Tracker silent error"));
-            }
+            // 1. SAVE DATA TO VARIABLE INSTEAD OF SENDING IT YET
+            pendingOrderData = {
+                orderType: orderType,
+                orderName: orderName,
+                orderPhone: orderPhone,
+                orderLocation: orderLocation,
+                lat: customerLat,                      
+                lng: customerLng,                      
+                triggerPorter: orderType === "Delivery", 
+                items: itemsString,
+                total: finalTotal.toFixed(0),
+                coupon: appliedCoupon ? `${appliedCoupon} (-₹${discount.toFixed(0)})` : "None",
+                paymentMethod: paymentMethod
+            };
 
-            // --- WHATSAPP MESSAGE LOGIC ---
+            // 2. CREATE WHATSAPP TEXT
             let text = `Hello Shri Swami Samarth, I would like to place a *${orderType.toUpperCase()}* order:\n\n*--- Order Details ---*\n`;
             cart.forEach(i => { let itemCost = i.price > 0 ? `₹${i.price * i.qty}` : 'Price on Request'; text += `▪ ${i.qty}x ${i.name} - ${itemCost}\n`; });
             text += `\n*Subtotal:* ₹${subTotal}`;
@@ -713,28 +712,22 @@
             text += orderType === "Delivery" ? `*Address:* ${orderLocation}\n` : `*Table Number:* ${orderLocation}\n`;
             text += `\n*(Prices for unpriced items will be added by the restaurant)*\nPlease confirm my order.`;
 
-            const waLink = `https://wa.me/919422231321?text=${encodeURIComponent(text)}`;
+            pendingWaLink = `https://wa.me/919422231321?text=${encodeURIComponent(text)}`;
             const upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Shri%20Swami%20Samarth&am=${finalTotal.toFixed(2)}&cu=INR&tn=Food%20Order`;
             
             toggleCart(); // Close the checkout cart
-            showSuccessModal(paymentMethod, finalTotal, waLink, upiLink);
-
-            // Empty the cart to start fresh
-            cart = []; appliedCoupon = null;
-            document.getElementById('couponCode').value = '';
-            document.getElementById('couponMessage').style.display = 'none';
-            updateCartUI();
+            showSuccessModal(paymentMethod, finalTotal, upiLink);
         }
 
         // --- SUCCESS MODAL FUNCTION ---
-        function showSuccessModal(paymentMethod, finalTotal, waLink, upiLink) {
+        function showSuccessModal(paymentMethod, finalTotal, upiLink) {
             const modal = document.getElementById('success-modal');
             const msg = document.getElementById('success-message');
             const upiInst = document.getElementById('upi-instructions');
             const waBtn = document.getElementById('wa-send-btn');
 
-            waBtn.href = waLink;
-            waBtn.onclick = () => { closeSuccessModal(); }; 
+            // ATTACH CLICK EVENT TO SEND TO DATABASE *THEN* OPEN WHATSAPP
+            waBtn.onclick = function() { confirmAndSendOrder(); };
 
             modal.style.display = "flex";
 
@@ -745,8 +738,30 @@
             } else {
                 msg.innerHTML = `Your order summary is ready to be sent.`;
                 upiInst.style.display = "none";
-                window.open(waLink, "_blank"); // Automatically open WhatsApp
             }
+        }
+
+        // --- NEW FUNCTION TO FINALIZE & SEND ---
+        function confirmAndSendOrder() {
+            // Send data to Google Sheets & Porter ONLY NOW
+            if(ORDER_TRACKING_URL && pendingOrderData) {
+                fetch(ORDER_TRACKING_URL, {
+                    method: 'POST', mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(pendingOrderData)
+                }).catch(e => console.log("Tracker silent error"));
+            }
+
+            // Open WhatsApp
+            window.open(pendingWaLink, "_blank");
+
+            // Close modal & reset cart
+            closeSuccessModal();
+            cart = []; 
+            appliedCoupon = null;
+            document.getElementById('couponCode').value = '';
+            document.getElementById('couponMessage').style.display = 'none';
+            updateCartUI();
         }
 
         function closeSuccessModal() { document.getElementById('success-modal').style.display = "none"; }
