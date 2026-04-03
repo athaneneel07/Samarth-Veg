@@ -186,7 +186,7 @@
 
             <div class="hero-btns">
                 <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Order Online</a>
-                <a href="#reservation" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Reserve a Table</a>
+                <a href="tel:+919422231321" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Reserve a Table</a>
             </div>
         </div>
     </section>
@@ -235,7 +235,7 @@
                 
                 <div class="res-buttons">
                     <button type="button" class="res-btn btn-wa" onclick="bookTableWA()"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
-                    <a href="tel:+917888051777" class="res-btn btn-call"><i class="fas fa-phone-alt"></i> Call to Reserve</a>
+                    <a href="tel:+919422231321" class="res-btn btn-call"><i class="fas fa-phone-alt"></i> Call to Reserve</a>
                 </div>
             </form>
         </div>
@@ -267,7 +267,7 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2023 Shri Swami Samarth. All Rights Reserved.</p>
-        <p style="margin-top: 10px; opacity: 0.8; font-size:0.9rem;">For queries, call 078880 51777</p>
+        <p style="margin-top: 10px; opacity: 0.8; font-size:0.9rem;">For queries, call 9422231321</p>
     </footer>
 
     <!-- Bottom Sticky Cart Bar -->
@@ -363,10 +363,10 @@
 
     <!-- Floating Action Buttons -->
     <div class="fab-container" id="fabContainer">
-        <a href="https://wa.me/917888051777?text=Hello%20Shri%20Swami%20Samarth,%20I%20have%20an%20inquiry." target="_blank" class="fab fab-whatsapp" title="Chat on WhatsApp">
+        <a href="https://wa.me/919422231321?text=Hello%20Shri%20Swami%20Samarth,%20I%20have%20an%20inquiry." target="_blank" class="fab fab-whatsapp" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="tel:+917888051777" class="fab fab-call" title="Call Us Directly">
+        <a href="tel:+919422231321" class="fab fab-call" title="Call Us Directly">
             <i class="fas fa-phone-alt"></i>
         </a>
     </div>
@@ -378,7 +378,6 @@
         // =======================================================
         const SHEET_ID = "1rNiNCP41QKpooyI0-ZwCg6YcRqPFPZypkTP9RfwEgzA"; 
         const MERCHANT_UPI_ID = "9422231321@fam"; 
-        // 🔴 UPDATED TO YOUR NEW LINK:
         const ORDER_TRACKING_URL = "https://script.google.com/macros/s/AKfycbzD6-m5l3iMdRVjm8BHFGADLE-hBadZ34ka14cxglt7dK4dgcvfJxgqw0LmVXzGFHm_GQ/exec"; 
         // =======================================================
 
@@ -714,7 +713,7 @@
             text += orderType === "Delivery" ? `*Address:* ${orderLocation}\n` : `*Table Number:* ${orderLocation}\n`;
             text += `\n*(Prices for unpriced items will be added by the restaurant)*\nPlease confirm my order.`;
 
-            const waLink = `https://wa.me/917888051777?text=${encodeURIComponent(text)}`;
+            const waLink = `https://wa.me/919422231321?text=${encodeURIComponent(text)}`;
             const upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Shri%20Swami%20Samarth&am=${finalTotal.toFixed(2)}&cu=INR&tn=Food%20Order`;
             
             toggleCart(); // Close the checkout cart
@@ -758,7 +757,7 @@
             const name = document.getElementById("resName").value; const guests = document.getElementById("resGuests").value;
             const date = document.getElementById("resDate").value; const time = document.getElementById("resTime").value;
             const text = `Hello Shri Swami Samarth, I would like to request a Table Reservation.\n\n*Name:* ${name}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n\nPlease confirm my booking.`;
-            window.open(`https://wa.me/917888051777?text=${encodeURIComponent(text)}`, "_blank");
+            window.open(`https://wa.me/919422231321?text=${encodeURIComponent(text)}`, "_blank");
         }
 
         function shareMenu() {
