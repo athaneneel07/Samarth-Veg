@@ -3,783 +3,661 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shri Swami Samarth | Authentic Pure Veg Restaurant in Pune</title>
+    <title>Shri Swami Samarth Veg | Premium Dining</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <style>
-        /* CSS Variables - ORANGE THEME */
+        /* CSS Variables - ROYAL THEME */
         :root {
-            --primary-color: #e65100; /* Vibrant Deep Orange */
-            --secondary-color: #ff8f00; /* Bright Citrus Orange */
-            --bg-color: #fffcf9; /* Very faint warm/orange tinted background */
-            --text-color: #7f3000; /* Dark burnt-orange/brown for readable body text */
+            --primary-color: #5c001e;
+            --secondary-color: #d4af37;
+            --bg-color: #fcfaf5;
+            --text-color: #2b2b2b;
             --white: #ffffff;
-            --light-gray: #ffe0b2; /* Light orange panel backgrounds */
+            --light-gray: #f4efeb; 
+            --gold-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+            --dark-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --success-green: #2e7d32;
         }
 
-        /* General Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-color); transition: padding-bottom 0.3s; }
+        body { background-color: var(--bg-color); color: var(--text-color); transition: padding-bottom 0.3s; overflow-x: hidden; }
         
-        /* Headings - Bright Orange */
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary-color); }
-        h2 { text-align: center; margin-bottom: 30px; font-size: 2.5rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-color); letter-spacing: 1px; }
+        h2 { text-align: center; margin-bottom: 30px; font-size: 2.8rem; position: relative; padding-bottom: 15px;}
+        h2::after { content: '✦'; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); color: var(--secondary-color); font-size: 1.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
 
-        /* Hero Section */
-        .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
-        }
+        /* BUTTONS */
+        .back-btn { background: transparent; border: none; color: var(--primary-color); font-size: 1.1rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: 0.3s; }
+        .back-btn:hover { color: var(--secondary-color); transform: translateX(-5px); }
+        .btn { padding: 14px 35px; border-radius: 30px; text-decoration: none; font-weight: 600; cursor: pointer; border: 2px solid transparent; transition: 0.4s; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; display: inline-block; text-align: center;}
+        .btn-primary { background: var(--secondary-color); color: var(--primary-color); box-shadow: var(--gold-shadow); }
+        .btn-primary:hover { background: transparent; border-color: var(--secondary-color); color: var(--secondary-color); }
+        .btn-secondary { background: transparent; border-color: var(--white); color: var(--white); }
+        .btn-secondary:hover { background: var(--white); color: var(--primary-color); }
+
+        /* --- LOGIN SCREEN --- */
+        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(15, 0, 5, 0.8), rgba(15, 0, 5, 0.95)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed; display: flex; justify-content: center; align-items: center; z-index: 99999; }
+        .login-box { background: var(--bg-color); padding: 50px 40px; border-radius: 20px; text-align: center; border: 3px solid var(--secondary-color); box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-width: 420px; width: 90%; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .login-box h1 { font-size: 2.5rem; margin-bottom: 5px; line-height: 1.2; }
+        .login-box p { color: #666; margin-bottom: 30px; font-size: 1rem; }
+        .google-btn-wrapper { display: flex; justify-content: center; margin-bottom: 20px; }
+        .guest-btn { background: transparent; border: none; color: var(--primary-color); text-decoration: underline; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .guest-btn:hover { color: var(--secondary-color); }
+        .login-loader { display: none; color: var(--primary-color); font-weight: bold; margin-top: 15px; }
+
+        /* --- TOP NAVIGATION BAR --- */
+        .top-nav { position: fixed; top: 0; left: 0; width: 100%; background: var(--primary-color); padding: 15px 25px; display: none; justify-content: space-between; align-items: center; z-index: 1001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border-bottom: 2px solid var(--secondary-color);}
+        .top-nav h3 { color: var(--secondary-color); margin: 0; font-size: 1.3rem; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;}
+        .menu-icon { color: var(--secondary-color); font-size: 1.8rem; cursor: pointer; transition: 0.3s; }
         
-        /* Status & Wait Time Badges */
-        .status-wrapper { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; }
-        .status-open { background-color: #4CAF50; color: white; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
-        .status-closed { background-color: #f44336; color: white; box-shadow: 0 0 10px rgba(244, 67, 54, 0.5); }
-        .wait-time-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; background-color: var(--white); color: var(--primary-color); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .nav-dropdown { position: absolute; top: 70px; right: 20px; background: var(--white); border: 2px solid var(--secondary-color); border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); display: none; flex-direction: column; overflow: hidden; min-width: 220px; z-index: 1002; }
+        .nav-dropdown div { padding: 15px 20px; font-weight: 500; color: var(--primary-color); cursor: pointer; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(212,175,55,0.2); transition: 0.3s; }
+        .nav-dropdown div:hover { background: var(--primary-color); color: var(--secondary-color); }
 
-        .hero h1 { font-size: 4rem; color: var(--secondary-color); margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
+        #home-page { padding-top: 60px; }
+
+        /* --- MY ORDERS & FAVS PAGE --- */
+        #my-orders-page { display: none; padding-top: 80px; padding-bottom: 80px; min-height: 100vh; background: var(--light-gray); }
+        .acc-tabs { display: flex; gap: 15px; margin-bottom: 30px; justify-content: center; max-width: 500px; margin-left: auto; margin-right: auto;}
+        .acc-tab-btn { flex: 1; padding: 12px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;}
+        .acc-tab-btn.active { background: var(--primary-color); color: var(--secondary-color); box-shadow: 0 5px 15px rgba(92, 0, 30, 0.3); }
         
-        /* Hero Rating Display */
-        .hero-rating { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; font-size: 1.2rem; }
-        .hero-rating .stars { color: var(--secondary-color); letter-spacing: 2px; }
-        .hero-rating .rating-text { font-weight: 600; background: rgba(0,0,0,0.5); padding: 2px 10px; border-radius: 15px; color: #fff;}
+        .acc-section { display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.4s ease-out; }
+        .acc-section.active { display: block; }
+        
+        .lux-card { background: var(--white); border-radius: 15px; padding: 25px; margin-bottom: 20px; box-shadow: var(--dark-shadow); border: 1px solid rgba(212, 175, 55, 0.3); position: relative; overflow: hidden; }
+        .lux-card::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 6px; background: var(--secondary-color); }
+        
+        .order-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 15px; margin-bottom: 15px; }
+        .order-date { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--primary-color); }
+        .order-price { font-size: 1.1rem; font-weight: bold; color: var(--success-green); background: #e8f5e9; padding: 5px 15px; border-radius: 20px;}
+        .order-items { color: #444; line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem; }
+        
+        .order-again-btn { background: var(--primary-color); color: var(--secondary-color); border: none; padding: 12px 25px; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 0.9rem;}
 
-        .hero-btns { display: flex; gap: 15px; justify-content: center; margin-top: 20px;}
-        .btn { padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; transition: 0.3s; }
-        .btn-primary { background: var(--primary-color); color: white; }
-        .btn-primary:hover { background: #bf360c; color: white; }
-        .btn-secondary { background: var(--white); color: var(--primary-color); }
+        .fav-card { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; }
+        .fav-info h4 { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-color); }
+        .fav-info p { color: var(--primary-color); font-weight: 600; font-size: 1.1rem; }
+        .fav-actions { display: flex; align-items: center; gap: 20px; }
+        .fav-btn { font-size: 1.6rem; color: #ccc; cursor: pointer; transition: 0.3s; }
+        .fav-btn.is-fav { color: #e53935; }
+        .fav-add-btn { background: var(--white); color: var(--primary-color); border: 2px solid var(--secondary-color); padding: 8px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.9rem;}
 
-        /* Badges */
-        .badges-container { display: flex; justify-content: center; gap: 30px; background: var(--white); padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-wrap: wrap; }
-        .badge { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--primary-color); }
-        .badge i { font-size: 1.5rem; }
+        /* --- SWIGGY STYLE UPSELL CAROUSEL --- */
+        .upsell-section { display: none; margin-top: 15px; margin-bottom: 15px; border-top: 1px dashed #ddd; border-bottom: 1px dashed #ddd; padding: 15px 0;}
+        .upsell-header { font-size: 1.1rem; font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--primary-color); margin-bottom: 12px; }
+        .upsell-carousel { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .upsell-carousel::-webkit-scrollbar { display: none; }
+        .upsell-card { min-width: 140px; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 12px; padding: 12px; text-align: center; background: var(--white); flex-shrink: 0; display:flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .upsell-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 5px; color: var(--text-color); line-height: 1.2;}
+        .upsell-price { font-size: 0.9rem; color: var(--primary-color); font-weight: bold; margin-bottom: 10px;}
+        .upsell-add { background: var(--light-gray); border: 1px solid var(--secondary-color); color: var(--primary-color); padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer;}
 
-        /* Legacy & Gallery */
-        .legacy-section { background: var(--white); padding: 60px 20px; text-align: center; }
-        .legacy-text { max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: var(--text-color); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s;}
-        .gallery-grid img:hover { transform: scale(1.05); }
+        /* --- HERO SECTION --- */
+        .hero { height: 75vh; background: linear-gradient(rgba(15, 0, 5, 0.7), rgba(15, 0, 5, 0.8)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--secondary-color); }
+        .status-wrapper { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .status-badge, .wait-time-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 25px; border-radius: 30px; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .status-open { background-color: rgba(76, 175, 80, 0.2); color: #81c784; border: 1px solid #4CAF50; }
+        .status-closed { background-color: rgba(244, 67, 54, 0.2); color: #e57373; border: 1px solid #f44336; }
+        .wait-time-badge { background-color: rgba(255,255,255,0.1); color: var(--secondary-color); border: 1px solid var(--secondary-color); backdrop-filter: blur(5px); }
+        .hero h1 { font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 10px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);}
+        .hero p { font-size: 1.1rem; margin-bottom: 10px; color: #fdfdfd; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* Menu Section */
+        .badges-container { display: flex; justify-content: center; gap: 40px; background: var(--primary-color); padding: 25px; flex-wrap: wrap; border-bottom: 3px solid var(--secondary-color); }
+        .badge { display: flex; align-items: center; gap: 12px; font-weight: 500; color: var(--secondary-color); font-size: 1.1rem; }
+
+        /* --- MENU SECTION --- */
         .menu-section { max-width: 900px; margin: 0 auto; }
-        .menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap:10px;}
-        .accordion { background-color: var(--white); color: var(--primary-color); cursor: pointer; padding: 18px; width: 100%; text-align: left; border: 1px solid #ffd180; outline: none; font-size: 1.2rem; font-weight: 600; transition: 0.4s; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .active, .accordion:hover { background-color: var(--light-gray); }
-        .panel { padding: 0 18px; background-color: white; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-radius: 0 0 8px 8px; margin-top: -10px; margin-bottom: 15px; border: 1px solid transparent; }
-        .panel.show { border-color: #ffd180; border-top: none; padding: 15px 18px; overflow-y: auto; max-height: 400px !important;}
-        
-        #loading-menu { text-align: center; padding: 40px; color: var(--primary-color); font-size: 1.2rem; font-weight: bold; }
-        
-        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #ffb74d; }
-        .menu-item:last-child { border-bottom: none; }
-        .item-details { display: flex; flex-direction: column; }
-        .item-name { font-weight: 500; color: var(--text-color); }
-        .item-price { color: var(--primary-color); font-weight: 600; }
-        .add-btn { background: var(--white); border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .add-btn:hover { background: var(--primary-color); color: white; }
+        .accordion { background-color: var(--white); color: var(--primary-color); cursor: pointer; padding: 20px; width: 100%; text-align: left; border: 1px solid rgba(212, 175, 55, 0.4); outline: none; font-size: 1.3rem; font-family: 'Playfair Display', serif; font-weight: 700; transition: 0.4s; border-radius: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02);}
+        .active, .accordion:hover { background-color: var(--primary-color); color: var(--secondary-color); }
+        .panel { padding: 0 20px; background-color: var(--white); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-radius: 0 0 10px 10px; margin-top: -12px; margin-bottom: 15px; }
+        .panel.show { border-color: rgba(212, 175, 55, 0.4); border-top: none; padding: 20px; overflow-y: auto; max-height: 400px !important; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px dashed rgba(212, 175, 55, 0.5); }
+        .item-details { display: flex; flex-direction: column; flex: 1; }
+        .item-name { font-weight: 500; font-size: 1.1rem; }
+        .item-price { color: var(--primary-color); font-weight: 700; margin-top: 3px; }
+        .action-group { display: flex; align-items: center; gap: 15px;}
+        .add-btn { background: var(--white); border: 2px solid var(--secondary-color); color: var(--primary-color); padding: 8px 25px; border-radius: 25px; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s;}
+        .add-btn:hover { background: var(--secondary-color); color: var(--primary-color); }
 
-        /* Table Reservation */
-        .reservation-section { background: var(--white); padding: 60px 20px; }
-        .res-form { max-width: 600px; margin: 0 auto; background: var(--light-gray); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(230, 81, 0, 0.1); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; color: var(--text-color); }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ffcc80; border-radius: 5px; font-size: 1rem; font-family: inherit; color: var(--text-color); }
-        .form-group textarea { resize: vertical; }
-        .res-buttons { display: flex; gap: 10px; margin-top: 20px; }
-        .res-btn { flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; transition: 0.3s; }
-        .btn-wa { background: #25D366; }
-        .btn-wa:hover { background: #1ebe57; }
-        .btn-call { background: var(--primary-color); }
-        .btn-call:hover { background: #bf360c; }
+        /* --- RESERVATION --- */
+        .reservation-section { background: var(--primary-color); padding: 70px 20px; color: var(--white); }
+        .res-form { max-width: 650px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 15px; border: 2px solid var(--secondary-color); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+        .res-buttons { display: flex; gap: 15px; margin-top: 30px; }
+        .res-btn { flex: 1; padding: 14px; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; text-transform: uppercase; transition: 0.3s;}
+        .btn-wa { background: #25D366; color: white;}
+        .btn-call { background: var(--secondary-color); color: var(--primary-color); }
 
-        /* Bottom Sticky Cart Bar */
-        .bottom-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--primary-color); color: white; padding: 15px 20px; display: none; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); animation: slideUp 0.3s ease-out; }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .bottom-cart-info { font-size: 1.1rem; font-weight: 600; display: flex; flex-direction: column;}
-        .bottom-cart-info span { font-size: 0.85rem; font-weight: 400; opacity: 0.9; }
-        .bottom-cart-btn { background-color: var(--white); color: var(--primary-color); border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .bottom-cart-btn:hover { background-color: #ffe0b2; }
-        
-        /* Cart Modal */
-        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1005; justify-content: center; align-items: center; padding: 10px;}
-        .cart-content { background: white; width: 100%; max-width: 500px; padding: 25px; border-radius: 10px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--primary-color); }
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; color: var(--text-color); }
-        
-        /* Coupon Section */
-        .coupon-section { margin-top: 15px; padding-top: 15px; border-top: 2px solid #ffcc80; }
-        .coupon-input-group { display: flex; gap: 10px; margin-bottom: 5px; }
-        .coupon-input-group input { flex: 1; padding: 10px; border: 1px solid #ffcc80; border-radius: 5px; text-transform: uppercase; font-weight: bold; color: var(--primary-color);}
-        .coupon-input-group button { padding: 10px 15px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s;}
-        .coupon-input-group button:hover { background: #bf360c; }
-        #couponMessage { font-size: 0.85rem; font-weight: 500; display: none; margin-bottom: 10px;}
-        
-        .cart-total { margin-top: 5px; font-size: 1.2rem; font-weight: bold; text-align: right; color: var(--primary-color); line-height: 1.4; }
-        
-        .checkout-details { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ffcc80; }
-        .checkout-details h4 { margin-bottom: 15px; color: var(--primary-color); }
-        .order-type-options { display: flex; gap: 15px; margin-bottom: 15px; background: var(--light-gray); padding: 10px; border-radius: 8px; color: var(--text-color); }
-        .order-type-options label { cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+        /* --- GALLERY & REVIEWS --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
+        .gallery-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; border: 2px solid var(--secondary-color);}
+        .reviews-section { background: var(--light-gray); padding: 70px 20px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .review-card { background: var(--white); padding: 35px 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); text-align: center; border-top: 4px solid var(--primary-color); }
+        .review-stars { color: var(--secondary-color); font-size: 1.2rem; margin-bottom: 15px; }
 
-        .payment-options { margin-top: 15px; padding: 15px; background: var(--light-gray); border-radius: 8px; color: var(--text-color); }
-        .payment-options h4 { margin-bottom: 10px; font-size: 1rem; color: var(--primary-color); }
-        .payment-options label { margin-right: 15px; cursor: pointer; font-weight: 500; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 5px; }
-        .checkout-btn { width: 100%; background: #25D366; color: white; border: none; padding: 15px; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3); transition: 0.3s;}
-        .checkout-btn:hover { background: #1ebe57; }
+        /* --- MAP SECTION --- */
+        .map-section { background: var(--bg-color); padding: 70px 20px; text-align: center; }
+        .map-container { max-width: 1000px; margin: 25px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 2px solid var(--secondary-color);}
+        .direction-bar { background: var(--primary-color); color: var(--white); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 10px; max-width: 1000px; margin: 0 auto 20px auto; border-left: 5px solid var(--secondary-color); }
+        .direction-btn { background: var(--secondary-color); color: var(--primary-color); padding: 10px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; }
 
-        /* Porter GPS Button */
-        .location-btn { background: var(--secondary-color); color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; margin-top: 10px; cursor: pointer; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.3s; }
-        .location-btn:hover { background: var(--primary-color); }
-
-        .map-section { background: var(--white); padding: 60px 20px; text-align: center; }
-        .map-container { max-width: 1000px; margin: 20px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(230, 81, 0, 0.1); }
-        .direction-bar { background: var(--primary-color); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-radius: 10px; max-width: 1000px; margin: 0 auto 20px auto; }
-        .direction-btn { background: white; color: var(--primary-color); padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        footer { background: #3e1b00; color: #ffcc80; text-align: center; padding: 20px; margin-top: 40px; padding-bottom: 30px;}
+        /* --- MODALS & CART --- */
+        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 0, 5, 0.85); z-index: 1005; justify-content: center; align-items: center; padding: 15px; backdrop-filter: blur(5px);}
+        .cart-content { background: var(--bg-color); width: 100%; max-width: 550px; padding: 35px; border-radius: 15px; position: relative; max-height: 90vh; overflow-y: auto; border: 2px solid var(--secondary-color);}
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 1rem; font-weight: 500; border-bottom: 1px solid #eee; padding-bottom: 8px;}
         
-        .fab-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 998; transition: bottom 0.3s; }
-        .fab { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; color: white; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s; }
-        .fab:hover { transform: scale(1.1); }
-        .fab-call { background-color: var(--primary-color); }
+        .coupon-section { margin-top: 10px; padding-top: 20px; border-top: 2px dashed rgba(212, 175, 55, 0.5); }
+        .coupon-input-group { display: flex; gap: 10px; margin-bottom: 8px; }
+        .coupon-input-group input { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px; text-transform: uppercase; font-weight: bold;}
+        .coupon-input-group button { padding: 12px 25px; background: var(--primary-color); color: var(--secondary-color); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        
+        .cart-total { margin-top: 15px; font-size: 1.3rem; font-weight: bold; text-align: right; color: var(--primary-color); }
+        .checkout-details { margin-top: 25px; padding-top: 20px; border-top: 2px solid var(--primary-color); }
+        .order-type-options, .payment-options { display: flex; gap: 15px; margin-bottom: 20px; background: var(--light-gray); padding: 15px; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3);}
+        .checkout-btn { width: 100%; background: #25D366; color: white; border: none; padding: 16px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);}
+        
+        .bottom-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--primary-color); color: var(--secondary-color); padding: 15px 30px; display: none; justify-content: space-between; align-items: center; z-index: 1000; border-top: 2px solid var(--secondary-color); box-shadow: 0 -4px 10px rgba(0,0,0,0.2);}
+        .fab-container { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column; gap: 15px; z-index: 998; }
+        .fab { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; color: white; font-size: 26px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .fab-call { background-color: var(--primary-color); color: var(--secondary-color); border: 2px solid var(--secondary-color);}
         .fab-whatsapp { background-color: #25D366; }
 
-        body.cart-active .fab-container { bottom: 90px; }
-        body.cart-active footer { padding-bottom: 90px; } 
-
-        @media(max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .direction-bar { flex-direction: column; gap: 15px; text-align: center; }
-            .hero-btns { flex-direction: column; }
-            .res-buttons { flex-direction: column; }
-        }
+        @media(max-width: 768px) { .hero h1 { font-size: 2.2rem; } .order-type-options, .payment-options { flex-direction: column; gap: 10px; } .top-nav h3 { font-size: 1.1rem; } }
     </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div>
-            <div class="status-wrapper">
-                <div id="status-badge" class="status-badge">Checking Status...</div>
-                <div class="wait-time-badge"><i class="fas fa-clock"></i> Wait Time: <span id="wait-time-text">Loading...</span></div>
+    <!-- ========================================== -->
+    <!-- LOGIN SCREEN -->
+    <!-- ========================================== -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>Shri Swami Samarth Veg</h1>
+            <p>Premium Kothrud Dining & Luxury Ordering</p>
+            <div class="google-btn-wrapper">
+                <div id="g_id_onload"
+                     data-client_id="397187913970-g2qq6jb5ki2qg59o1qcr3g15hfkdg7dd.apps.googleusercontent.com"
+                     data-callback="handleGoogleLogin"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-shape="rectangular"></div>
             </div>
-            
-            <h1>Shri Swami Samarth</h1>
-            <p>Authentic, Delicious, and 100% Pure Vegetarian Cuisine</p>
-            <p><i class="fas fa-map-marker-alt" style="color: var(--secondary-color);"></i> Alkapuri Society, Kothrud, Pune</p>
-            
-            <div class="hero-rating">
-                <span class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                </span>
-                <span class="rating-text">3.95 / 5 Average Rating</span>
-            </div>
-
-            <div class="hero-btns">
-                <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Order Online</a>
-                <a href="tel:+919422231321" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Reserve a Table</a>
-            </div>
+            <div id="login-loader" class="login-loader"><i class="fas fa-spinner fa-spin"></i> Authenticating...</div>
+            <button class="guest-btn" onclick="continueAsGuest()">Continue as Guest <i class="fas fa-arrow-right"></i></button>
         </div>
-    </section>
-
-    <!-- Safety & Delivery Badges -->
-    <div class="badges-container">
-        <div class="badge"><i class="fas fa-leaf"></i> 100% Pure Veg</div>
-        <div class="badge"><i class="fas fa-hands-wash"></i> Sanitized Kitchen</div>
-        <div class="badge"><i class="fas fa-motorcycle"></i> Porter Delivery Auto-Dispatch</div>
     </div>
 
-    <!-- Interactive Menu Section -->
-    <section id="menu" class="container menu-section">
-        <h2>Our Menu</h2>
-        <div class="menu-header">
-            <p style="color: var(--text-color);">Select items to add to your cart, and order via WhatsApp!</p>
-            <button class="btn btn-primary" onclick="shareMenu()"><i class="fas fa-share-alt"></i> Share Menu</button>
+    <!-- ========================================== -->
+    <!-- NAVIGATION -->
+    <!-- ========================================== -->
+    <header class="top-nav" id="topNav">
+        <h3>Shri Swami Samarth Veg</h3>
+        <i class="fas fa-bars menu-icon" onclick="toggleDropdown(event)"></i>
+        <div class="nav-dropdown" id="navDropdown">
+            <div onclick="goHome()"><i class="fas fa-home"></i> Home Menu</div>
+            <div onclick="showAccountDetails()"><i class="fas fa-user-circle"></i> Account Details</div>
+            <div onclick="showMyOrdersPage()"><i class="fas fa-clipboard-list"></i> My Orders & Favs</div>
+            <div onclick="logout()" style="color: #c62828;"><i class="fas fa-sign-out-alt"></i> Logout</div>
         </div>
+    </header>
 
-        <div id="loading-menu"><i class="fas fa-spinner fa-spin"></i> Loading latest menu from Kitchen...</div>
-        <div id="menu-container"></div>
-        <p style="text-align: center; font-size: 0.9rem; color: #a66a4f; margin-top: 20px;">*Some custom or special items may not have direct prices listed. Please add them to your cart and inquire directly on WhatsApp!</p>
-    </section>
-
-    <!-- Table Reservation Form -->
-    <section id="reservation" class="reservation-section">
+    <!-- ========================================== -->
+    <!-- MY ORDERS PAGE -->
+    <!-- ========================================== -->
+    <div id="my-orders-page">
         <div class="container">
-            <h2>Reserve a Table</h2>
-            <form class="res-form" id="reservationForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="resName" required placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label>Number of Guests</label>
-                    <input type="number" id="resGuests" required min="1" placeholder="E.g., 4">
-                </div>
-                <div class="form-group">
-                    <label>Date</label>
-                    <input type="date" id="resDate" required>
-                </div>
-                <div class="form-group">
-                    <label>Time</label>
-                    <input type="time" id="resTime" required>
-                </div>
-                
-                <div class="res-buttons">
-                    <button type="button" class="res-btn btn-wa" onclick="bookTableWA()"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
-                    <a href="tel:+919422231321" class="res-btn btn-call"><i class="fas fa-phone-alt"></i> Call to Reserve</a>
-                </div>
-            </form>
+            <button class="back-btn" onclick="goHome()"><i class="fas fa-arrow-left"></i> Back to Menu</button>
+            <h2>History & Favorites</h2>
+            <div class="acc-tabs">
+                <button class="acc-tab-btn active" id="tab-btn-orders" onclick="switchAccTab('orders')">Past Orders</button>
+                <button class="acc-tab-btn" id="tab-btn-favs" onclick="switchAccTab('favs')">Favorites</button>
+            </div>
+            <div id="tab-orders" class="acc-section active"><div id="orders-list"></div></div>
+            <div id="tab-favs" class="acc-section"><div id="favs-list"></div></div>
         </div>
-    </section>
-
-    <!-- Gallery & Reviews -->
-    <section class="container">
-        <h2>Flavors & Ambience</h2>
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Restaurant Interior seating">
-            <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=500&q=80" alt="Paneer Gravy Dish">
-            <img src="https://images.unsplash.com/photo-1589301760014-d929f39ce9b0?auto=format&fit=crop&w=500&q=80" alt="South Indian Spread">
-            <img src="https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?auto=format&fit=crop&w=500&q=80" alt="Traditional Indian Thali/Dal">
-        </div>
-    </section>
-
-    <!-- Maps & Directions -->
-    <section class="map-section">
-        <h2>Locate Us</h2>
-        <div class="direction-bar">
-            <div><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> 88, Alkapuri Society Rd, Vrindavan Colony, Alkapuri Society, Kothrud, Pune, Maharashtra 411038</div>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=88,+Alkapuri+Society+Rd,+Vrindavan+Colony,+Alkapuri+Society,+Kothrud,+Pune,+Maharashtra+411038" target="_blank" class="direction-btn"><i class="fas fa-directions"></i> Get Directions</a>
-        </div>
-        <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=88,%20Alkapuri%20Society%20Rd,%20Vrindavan%20Colony,%20Alkapuri%20Society,%20Kothrud,%20Pune,%20Maharashtra%20411038&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Shri Swami Samarth. All Rights Reserved.</p>
-        <p style="margin-top: 10px; opacity: 0.8; font-size:0.9rem;">For queries, call 9422231321</p>
-    </footer>
-
-    <!-- Bottom Sticky Cart Bar -->
-    <div class="bottom-cart-bar" id="bottomCartBar">
-        <div class="bottom-cart-info">
-            <div id="bottomItemCount">0 Items</div>
-            <span id="bottomTotalPrice" style="color: #fff;">Estimated Total: ₹0</span>
-        </div>
-        <button class="bottom-cart-btn" onclick="toggleCart()">View Cart <i class="fas fa-shopping-bag"></i></button>
     </div>
 
-    <!-- Cart Modal -->
+    <!-- ========================================== -->
+    <!-- HOME PAGE CONTENT -->
+    <!-- ========================================== -->
+    <div id="home-page" style="display: none;">
+        <section class="hero" id="dynamicHero">
+            <div>
+                <div class="status-wrapper">
+                    <div id="status-badge" class="status-badge">Checking Status...</div>
+                    <div class="wait-time-badge"><i class="fas fa-clock"></i> Wait: <span id="wait-time-text">30m</span></div>
+                </div>
+                <h1>Shri Swami Samarth Veg</h1>
+                <p>♦ Premium Family Resto Bar ♦</p>
+                <p style="font-size: 0.9rem; text-transform:none;"><i class="fas fa-map-marker-alt" style="color: var(--secondary-color);"></i> Kothrud, Pune</p>
+                <div class="hero-btns">
+                    <a href="#menu" class="btn btn-primary">Order Online</a>
+                    <a href="#reservation" class="btn btn-secondary">Reserve Table</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="badges-container">
+            <div class="badge"><i class="fas fa-crown"></i> Pure Veg</div>
+            <div class="badge"><i class="fas fa-cocktail"></i> Family Dining</div>
+            <div class="badge"><i class="fas fa-motorcycle"></i> Fast Delivery</div>
+        </div>
+
+        <!-- MENU -->
+        <section id="menu" class="container menu-section">
+            <h2>Our Royal Menu</h2>
+            <div id="loading-menu" style="text-align:center; padding:40px;"><i class="fas fa-spinner fa-spin"></i> Preparing...</div>
+            <div id="menu-container"></div>
+        </section>
+
+        <!-- RESERVATION -->
+        <section id="reservation" class="reservation-section">
+            <div class="container">
+                <h2>Reserve Experience</h2>
+                <form class="res-form">
+                    <div class="form-group"><label>Name</label><input type="text" id="resName" placeholder="Enter name"></div>
+                    <div class="form-group"><label>Guests</label><input type="number" id="resGuests" placeholder="No. of guests"></div>
+                    <div class="form-group"><label>Date & Time</label><input type="datetime-local" id="resDateTime"></div>
+                    <div class="res-buttons">
+                        <button type="button" class="res-btn btn-wa" onclick="bookTableWA()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <a href="tel:+917888051777" class="res-btn btn-call"><i class="fas fa-phone-alt"></i> Call</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="container">
+            <h2>Luxury Ambience</h2>
+            <div class="gallery-grid">
+                <img src="https://i.postimg.cc/GtRmnx1K/image.png" alt="Dining">
+                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80" alt="Paneer">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80" alt="Thali">
+                <img src="https://i.postimg.cc/4NdT7SwK/image.png" alt="Interior">
+            </div>
+        </section>
+
+        <!-- MAP -->
+        <section class="map-section">
+            <h2>Locate Us</h2>
+            <div class="direction-bar">
+                <div style="text-align:left; font-size:0.85rem;"><strong>Address:</strong> Shri Swami Samarth, 88, Alkapuri Society Rd, Kothrud, Pune</div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Shri+Swami+Samarth+88+Alkapuri+Society+Rd+Pune" target="_blank" class="direction-btn">Directions</a>
+            </div>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=Shri%20Swami%20Samarth,%2088,%20Alkapuri%20Society%20Rd,%20Kothrud,%20Pune&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <footer style="background: #1a1a1a; color: var(--secondary-color); text-align: center; padding: 40px 20px;">
+            <p>&copy; 2024 Shri Swami Samarth Veg. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CART MODAL -->
+    <!-- ========================================== -->
     <div class="cart-modal" id="cart-modal">
         <div class="cart-content">
-            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
-            <h3 style="margin-bottom: 20px;"><i class="fas fa-receipt"></i> Your Order</h3>
-            <div id="cart-items">
-                <p style="text-align: center; color: var(--text-color);">Your cart is empty.</p>
-            </div>
+            <button class="back-btn" onclick="toggleCart()"><i class="fas fa-arrow-left"></i> Back</button>
+            <h3 style="margin-bottom:20px;"><i class="fas fa-receipt"></i> Your Order</h3>
+            <div id="cart-items"></div>
             
-            <!-- COUPON SECTION -->
+            <div class="upsell-section" id="upsell-section">
+                <div class="upsell-header">Add a little extra?</div>
+                <div class="upsell-carousel" id="upsell-carousel"></div>
+            </div>
+
             <div class="coupon-section">
                 <div class="coupon-input-group">
-                    <input type="text" id="couponCode" placeholder="Enter Coupon Code">
+                    <input type="text" id="couponCode" placeholder="Enter Coupon">
                     <button type="button" onclick="applyCoupon()">Apply</button>
                 </div>
-                <div id="couponMessage"></div>
+                <div id="couponMessage" style="display:none; font-size:0.9rem;"></div>
             </div>
 
-            <!-- TOTAL SECTION -->
-            <div class="cart-total" id="cart-total">Estimated Total: ₹0</div>
+            <div id="cart-total" class="cart-total">Total: ₹0</div>
 
-            <!-- Customer Details Form -->
-            <div class="checkout-details" id="checkoutForm">
-                <h4><i class="fas fa-utensils"></i> Order Type:</h4>
+            <div class="checkout-details">
+                <h4>Order Details:</h4>
                 <div class="order-type-options">
-                    <label><input type="radio" name="orderType" value="Delivery" checked onchange="toggleOrderFields()"> <i class="fas fa-motorcycle"></i> Delivery (Auto-Porter)</label>
-                    <label><input type="radio" name="orderType" value="Dine-in" onchange="toggleOrderFields()"> <i class="fas fa-chair"></i> Dine-in / Pickup</label>
-                </div>
-
-                <h4><i class="fas fa-user"></i> Your Details:</h4>
-                <div class="form-group">
-                    <input type="text" id="orderName" placeholder="Your Full Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="orderPhone" placeholder="Mobile Number (Active for Porter)" required>
+                    <label><input type="radio" name="orderType" value="Delivery" checked onchange="toggleOrderFields()"> Delivery</label>
+                    <label><input type="radio" name="orderType" value="Dine-in" onchange="toggleOrderFields()"> Dine-in / Pickup</label>
                 </div>
                 
-                <div class="form-group" id="addressField">
-                    <textarea id="orderAddress" rows="2" placeholder="Complete Flat No, Building Name & Street Address"></textarea>
-                    
-                    <!-- PORTER LOCATION PICKER -->
-                    <button type="button" class="location-btn" onclick="fetchGPSLocation()">
-                        <i class="fas fa-crosshairs"></i> Get GPS For Fast Delivery
-                    </button>
-                    <small id="gpsStatus" style="display:block; margin-top:5px; font-weight:600;"></small>
+                <div class="form-group"><input type="text" id="orderName" placeholder="Full Name"></div>
+                <div class="form-group"><input type="tel" id="orderPhone" placeholder="Mobile Number"></div>
+                
+                <div id="addressField" class="form-group">
+                    <textarea id="orderAddress" rows="2" placeholder="Delivery Address"></textarea>
+                    <button type="button" onclick="fetchGPS()" style="margin-top:5px; background:var(--primary-color); color:var(--secondary-color); padding:8px; width:100%; border-radius:5px; border:none; cursor:pointer;"><i class="fas fa-location-arrow"></i> Get GPS For Delivery</button>
+                    <small id="gpsStatus" style="display:block; margin-top:5px;"></small>
                 </div>
-                <div class="form-group" id="tableField" style="display: none;">
-                    <input type="number" id="tableNumber" placeholder="Table Number (e.g. 5)">
+
+                <div class="payment-options">
+                    <label><input type="radio" name="paymentMethod" value="UPI" checked> <i class="fas fa-mobile-alt"></i> UPI</label>
+                    <label><input type="radio" name="paymentMethod" value="Cash"> <i class="fas fa-money-bill-wave"></i> Cash</label>
                 </div>
             </div>
 
-            <!-- Payment Method UI -->
-            <div class="payment-options">
-                <h4><i class="fas fa-wallet"></i> Select Payment Method:</h4>
-                <label><input type="radio" name="paymentMethod" value="UPI" checked> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" width="30" style="margin-right:5px"> UPI</label>
-                <label><input type="radio" name="paymentMethod" value="Cash / Pay at Desk"> <i class="fas fa-money-bill-wave" style="color: green; margin-right:5px;"></i> Cash / Pay at Desk</label>
-            </div>
-
-            <button class="checkout-btn" onclick="checkout()"><i class="fab fa-whatsapp"></i> Confirm & Place Order</button>
+            <button class="checkout-btn" onclick="checkout()"><i class="fab fa-whatsapp"></i> Confirm & Proceed</button>
         </div>
     </div>
 
-    <!-- Success Confirmation Modal -->
-    <div class="cart-modal" id="success-modal" style="display: none; z-index: 1100;">
-        <div class="cart-content" style="text-align: center; max-width: 450px;">
+    <!-- SUCCESS / UPI MODAL -->
+    <div class="cart-modal" id="success-modal" style="z-index: 2000;">
+        <div class="cart-content" style="text-align: center;">
             <i class="fas fa-check-circle" style="font-size: 4rem; color: #25D366; margin-bottom: 15px;"></i>
-            <h2 style="color: var(--primary-color); margin-bottom: 10px;">Order Ready!</h2>
-            <p id="success-message" style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-color);">Your order summary is ready.</p>
-            
-            <p style="font-size: 0.95rem; margin-bottom: 20px; color: var(--primary-color); font-weight:bold;">A Porter rider will be assigned automatically for delivery once confirmed!</p>
-            
-            <div id="upi-instructions" style="display: none; background: #fff3e0; border-left: 4px solid var(--primary-color); padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: left;">
-                <p style="margin-bottom: 8px; font-weight: bold; color: var(--primary-color);"><i class="fas fa-mobile-alt"></i> Paying via UPI?</p>
-                <p style="font-size: 0.9rem; color: var(--text-color);">We've attempted to open your UPI app. Once your payment is successful, please return here and click the button below to confirm your order with the kitchen.</p>
+            <h2>Order Ready!</h2>
+            <p id="success-message" style="margin-bottom:20px; font-weight:bold;"></p>
+            <div id="upi-instructions" style="display:none; background:#f4efeb; padding:15px; border-radius:8px; margin-bottom:20px; text-align:left;">
+                <p><strong>Payment Intent Sent:</strong> Please complete payment in your UPI app, then click the button below to notify our kitchen.</p>
             </div>
-
-            <!-- BUTTON NO LONGER HAS HREF. IT USES ONCLICK TO TRIGGER DATABASE & WHATSAPP -->
-            <button id="wa-send-btn" class="checkout-btn" style="text-decoration: none; width: 100%; display: flex; justify-content: center; margin-bottom: 15px;"><i class="fab fa-whatsapp"></i> Send Order to Kitchen</button>
-            
-            <button onclick="closeSuccessModal()" style="background: none; border: none; color: var(--primary-color); text-decoration: underline; cursor: pointer; font-size: 0.95rem;">Close & Back to Menu</button>
+            <button id="wa-send-btn" class="checkout-btn"><i class="fab fa-whatsapp"></i> Send Order to Kitchen</button>
+            <button class="back-btn" onclick="closeSuccess()" style="margin-top:10px;">Close</button>
         </div>
     </div>
 
-    <!-- Floating Action Buttons -->
-    <div class="fab-container" id="fabContainer">
-        <a href="https://wa.me/919422231321?text=Hello%20Shri%20Swami%20Samarth,%20I%20have%20an%20inquiry." target="_blank" class="fab fab-whatsapp" title="Chat on WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="tel:+919422231321" class="fab fab-call" title="Call Us Directly">
-            <i class="fas fa-phone-alt"></i>
-        </a>
+    <!-- ACCOUNT MODAL -->
+    <div class="cart-modal" id="account-details-modal">
+        <div class="cart-content" style="text-align:center;">
+            <button class="back-btn" onclick="closeAccountDetails()"><i class="fas fa-times"></i></button>
+            <img id="det-pic" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--secondary-color); margin:20px auto; display:block;">
+            <h2 id="det-name"></h2>
+            <p id="det-email" style="color:#666; margin-bottom:20px;"></p>
+            <button class="btn btn-primary" onclick="closeAccountDetails()" style="width:100%;">Close</button>
+        </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- BOTTOM UI -->
+    <div class="bottom-cart-bar" id="bottomCartBar">
+        <div id="bottomItemCount">0 Items</div>
+        <button class="add-btn" onclick="toggleCart()" style="background:var(--secondary-color); color:var(--primary-color);">View Cart</button>
+    </div>
+
+    <div class="fab-container">
+        <a href="https://wa.me/917888051777" class="fab fab-whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+917888051777" class="fab fab-call"><i class="fas fa-phone-alt"></i></a>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================== -->
     <script>
-        // =======================================================
-        // 🛑 CONFIGURATION 🛑
-        // =======================================================
-        const SHEET_ID = "1rNiNCP41QKpooyI0-ZwCg6YcRqPFPZypkTP9RfwEgzA"; 
-        const MERCHANT_UPI_ID = "9422231321@fam"; 
-        const ORDER_TRACKING_URL = "https://script.google.com/macros/s/AKfycbzD6-m5l3iMdRVjm8BHFGADLE-hBadZ34ka14cxglt7dK4dgcvfJxgqw0LmVXzGFHm_GQ/exec"; 
-        // =======================================================
-
-        // COUPON SYSTEM 
-        let activeCoupons = {
-            "WELCOME10": { type: "percent", value: 10 },
-            "FLAT50": { type: "flat", value: 50 }
-        };
-        let appliedCoupon = null; 
-
-        // Location data variables for Porter Delivery
-        let customerLat = null;
-        let customerLng = null;
-        let isRestaurantOpen = true;
-        let cart = [];
-        
-        // NEW VARIABLES FOR THE BUTTON TIMING FIX
-        let pendingOrderData = null;
-        let pendingWaLink = "";
-
-        // Complete Menu Fallback (Triggers if Google Sheet fails)
-        const fallbackMenuData = {
-            "🥘 Tawa Specialities": [{name: "Aloo Methi Dry", price: 150}, {name: "Aloo Jeera Dry", price: 150}, {name: "Tawa Paneer", price: 170}, {name: "Tawa Veg", price: 170}],
-            "🍢 Starters": [{name: "Veg. Crispy", price: 150}, {name: "Paneer Crispy", price: 170}, {name: "Hara Bhara Kabab", price: 150}],
-            "🍛 Moglai Specialities": [{name: "Veg. Moglai", price: 160}, {name: "Navratna Kurma", price: 180}],
-            "🥗 Jain Preparation": [{name: "Dal Fry (Jain)", price: 110}, {name: "Paneer Butter Masala (Jain)", price: 170}],
-            "🍲 Dal Specialities": [{name: "Dal Tadka", price: 120}],
-            "🍽️ Thalis": [{name: "Punjabi Thali (Regular)", price: 0}],
-            "🍜 Soups & Salads": [{name: "Tomato Soup", price: 70}],
-            "🥪 Sandwiches": [{name: "Cheese Sandwich", price: 80}],
-            "🍛 Pav Bhaji": [{name: "Amul Pav Bhaji", price: 90}],
-            "🍕 Pizzas": [{name: "Veg Pizza", price: 150}],
-            "🍚 Rice": [{name: "Jeera Rice", price: 0}, {name: "Veg Biryani", price: 0}],
-            "🫓 Tandoor": [{name: "Butter Roti", price: 0}, {name: "Garlic Naan", price: 0}],
-            "☕ Beverages": [{name: "Tea", price: 20}, {name: "Lassi", price: 50}],
-            "🍨 Desserts": [{name: "Gulab Jamun", price: 50}]
+        const CONFIG = {
+            CLIENT_ID: "397187913970-g2qq6jb5ki2qg59o1qcr3g15hfkdg7dd.apps.googleusercontent.com",
+            SHEET_ID: "1rNiNCP41QKpooyI0-ZwCg6YcRqPFPZypkTP9RfwEgzA",
+            APPS_SCRIPT: "https://script.google.com/macros/s/AKfycbzD6-m5l3iMdRVjm8BHFGADLE-hBadZ34ka14cxglt7dK4dgcvfJxgqw0LmVXzGFHm_GQ/exec",
+            PHONE: "917888051777",
+            UPI_ID: "9422231321@fam"
         };
 
-        function parseCSV(str) {
-            const arr = []; let quote = false; let col = 0, row = 0;
-            for (let c = 0; c < str.length; c++) {
-                let cc = str[c], nc = str[c+1];
-                arr[row] = arr[row] || []; arr[row][col] = arr[row][col] || '';
-                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
-                if (cc == '"') { quote = !quote; continue; }
-                if (cc == ',' && !quote) { ++col; continue; }
-                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
-                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-                arr[row][col] += cc;
-            }
-            return arr;
+        let cart = [], fullMenu = {}, userOrders = [], userFavorites = [], loggedInUser = null, customerGPS = null;
+        let activeCoupons = { "SWAMI10": { type: "percent", value: 10 }, "FIRST50": { type: "flat", value: 50 } };
+        let appliedCoupon = null;
+
+        // AUTH & INIT
+        document.addEventListener("DOMContentLoaded", () => {
+            let saved = localStorage.getItem('swami_auth');
+            if (saved === 'GUEST') continueAsGuest();
+            else if (saved) { loggedInUser = JSON.parse(saved); restoreSession(); }
+            checkBusinessStatus();
+        });
+
+        function handleGoogleLogin(response) {
+            const payload = JSON.parse(atob(response.credential.split('.')[1]));
+            loggedInUser = { name: payload.name, email: payload.email, picture: payload.picture };
+            localStorage.setItem('swami_auth', JSON.stringify(loggedInUser));
+            sendToSheet({ type: 'user_login', name: loggedInUser.name, email: loggedInUser.email });
+            restoreSession();
         }
 
-        async function loadDynamicData() {
+        function restoreSession() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            document.getElementById('topNav').style.display = 'flex';
+            fetchHistory();
+            loadMenu();
+        }
+
+        function continueAsGuest() {
+            localStorage.setItem('swami_auth', 'GUEST');
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            document.getElementById('topNav').style.display = 'flex';
+            loadMenu();
+        }
+
+        // DATA FETCHING
+        async function loadMenu() {
+            const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Menu`;
             try {
-                const cacheBuster = new Date().getTime();
-                
-                // Fetch Settings & Coupons
-                const settingsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Settings&_=${cacheBuster}`;
-                const settingsRes = await fetch(settingsUrl);
-                const settingsText = await settingsRes.text();
-                if(settingsText.toLowerCase().includes("<!doctype html>")) throw new Error("Google Sheet is Private!");
-                
-                const settingsRows = parseCSV(settingsText);
-                let waitTime = "15-20 mins";
-                
-                for(let i=1; i<settingsRows.length; i++) {
-                    if(!settingsRows[i] || !settingsRows[i][0]) continue;
-                    let key = settingsRows[i][0].trim();
-                    let val = settingsRows[i][1] ? settingsRows[i][1].trim() : "";
-                    
-                    if(key === 'Wait Time') {
-                        waitTime = val;
-                    } else if (key.toUpperCase().startsWith('COUPON:')) {
-                        let code = key.split(':')[1].trim().toUpperCase();
-                        let type = val.includes('%') ? 'percent' : 'flat';
-                        let numericVal = parseFloat(val.replace(/[^0-9.]/g, ''));
-                        if(!isNaN(numericVal)) activeCoupons[code] = { type: type, value: numericVal };
-                    }
-                }
-                document.getElementById('wait-time-text').innerText = waitTime;
-
-                // Fetch Menu
-                const menuUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Menu&_=${cacheBuster}`;
-                const menuRes = await fetch(menuUrl);
-                const menuText = await menuRes.text();
-                const menuRows = parseCSV(menuText);
-                const dynamicMenu = {};
-                
-                for(let i=1; i<menuRows.length; i++) {
-                    const row = menuRows[i];
-                    if(row.length < 2) continue; 
-                    const category = row[0].trim(); const name = row[1].trim();
-                    if(!category || !name) continue;
-                    let price = 0;
-                    if(row[2]) {
-                        const parsedPrice = parseFloat(row[2].replace(/[^0-9.]/g, ''));
-                        if(!isNaN(parsedPrice)) price = parsedPrice;
-                    }
-                    if(!dynamicMenu[category]) dynamicMenu[category] = [];
-                    dynamicMenu[category].push({name, price});
-                }
-                if(Object.keys(dynamicMenu).length > 0) renderMenu(dynamicMenu);
-                else throw new Error("Parsed data empty.");
-            } catch(err) {
-                console.error("⚠️ Fallback active:", err);
-                renderMenu(fallbackMenuData); 
-                document.getElementById('wait-time-text').innerText = "15-20 mins";
-            }
+                const res = await fetch(url);
+                const text = await res.text();
+                const rows = text.split('\n').slice(1);
+                fullMenu = {};
+                rows.forEach(row => {
+                    const cols = row.split(',').map(c => c.replace(/"/g, ''));
+                    if (cols.length < 3) return;
+                    if (!fullMenu[cols[0]]) fullMenu[cols[0]] = [];
+                    fullMenu[cols[0]].push({ name: cols[1], price: parseFloat(cols[2]) });
+                });
+                renderMenu();
+            } catch (e) { alert("Menu Load Error. Please refresh."); }
         }
 
-        function renderMenu(dataObj) {
-            const menuContainer = document.getElementById("menu-container");
-            document.getElementById("loading-menu").style.display = "none";
-            menuContainer.innerHTML = "";
-            for (const [category, items] of Object.entries(dataObj)) {
-                let html = `<button class="accordion">${category} <i class="fas fa-chevron-down"></i></button><div class="panel">`;
-                items.forEach(item => {
-                    let priceDisplay = item.price > 0 ? `₹${item.price}` : 'Ask Price';
+        async function fetchHistory() {
+            if (!loggedInUser) return;
+            try {
+                const res = await fetch(`${CONFIG.APPS_SCRIPT}?type=get_user_data&email=${encodeURIComponent(loggedInUser.email)}`);
+                const json = await res.json();
+                if (json.status === "success") {
+                    userOrders = json.data.orders || [];
+                    userFavorites = json.data.favorites || [];
+                    renderAccountData();
+                }
+            } catch (e) {}
+        }
+
+        // UI RENDERING
+        function renderMenu() {
+            const mc = document.getElementById('menu-container');
+            document.getElementById('loading-menu').style.display = 'none';
+            mc.innerHTML = '';
+            for (let cat in fullMenu) {
+                let html = `<button class="accordion">${cat} <i class="fas fa-chevron-down"></i></button><div class="panel">`;
+                fullMenu[cat].forEach(item => {
+                    let isFav = userFavorites.includes(item.name);
                     html += `
                     <div class="menu-item">
-                        <div class="item-details"><span class="item-name">${item.name}</span><span class="item-price">${priceDisplay}</span></div>
-                        <button class="add-btn" onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})">Add</button>
+                        <div class="item-details"><span class="item-name">${item.name}</span><span class="item-price">₹${item.price}</span></div>
+                        <div class="action-group">
+                            <i class="${isFav?'fas':'far'} fa-heart fav-btn ${isFav?'is-fav':''}" onclick="toggleFav('${item.name.replace(/'/g,"\\'")}', this)"></i>
+                            <button class="add-btn" onclick="addToCart('${item.name.replace(/'/g,"\\'")}', ${item.price})">Add</button>
+                        </div>
                     </div>`;
                 });
-                html += `</div>`;
-                menuContainer.innerHTML += html;
+                mc.innerHTML += html + '</div>';
             }
-            const accordions = document.querySelectorAll(".accordion");
-            accordions.forEach(acc => {
-                acc.addEventListener("click", function() {
-                    this.classList.toggle("active"); const panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) { panel.style.maxHeight = null; panel.classList.remove("show"); } 
-                    else { panel.style.maxHeight = panel.scrollHeight + "px"; panel.classList.add("show"); }
-                });
-            });
+            attachAccordionLogic();
         }
 
-        window.onload = function() {
-            loadDynamicData();
-            const urlParams = new URLSearchParams(window.location.search);
-            const tableNum = urlParams.get('table');
-            if (tableNum) {
-                document.querySelector('input[name="orderType"][value="Dine-in"]').checked = true;
-                toggleOrderFields(); document.getElementById('tableNumber').value = tableNum;
-            }
-        };
-
-        function toggleOrderFields() {
-            const orderType = document.querySelector('input[name="orderType"]:checked').value;
-            if(orderType === "Dine-in") {
-                document.getElementById("addressField").style.display = "none";
-                document.getElementById("tableField").style.display = "block";
-            } else {
-                document.getElementById("addressField").style.display = "block";
-                document.getElementById("tableField").style.display = "none";
-            }
-        }
-
-        function checkRestaurantStatus() {
-            let options = { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', hour12: false };
-            let formatter = new Intl.DateTimeFormat([], options);
-            let timeStr = formatter.format(new Date()); 
-            let [hours, minutes] = timeStr.split(':').map(Number);
-            let currentTime = hours + (minutes / 60);
-            const openTime = 10.0; const closeTime = 24.0; 
-            const badge = document.getElementById("status-badge");
-            if (currentTime >= openTime && currentTime < closeTime) {
-                isRestaurantOpen = true; badge.innerHTML = '<i class="fas fa-door-open"></i> We are OPEN (Closes at 12:00 AM)'; badge.className = 'status-badge status-open';
-            } else {
-                isRestaurantOpen = false; badge.innerHTML = '<i class="fas fa-door-closed"></i> We are CLOSED (Opens at 10:00 AM)'; badge.className = 'status-badge status-closed';
-            }
-        }
-        checkRestaurantStatus(); setInterval(checkRestaurantStatus, 60000);
-
-        // --- FETCH GPS FOR PORTER API ---
-        function fetchGPSLocation() {
-            const gpsStatus = document.getElementById('gpsStatus');
-            gpsStatus.style.color = "orange";
-            gpsStatus.innerText = "Locating your accurate GPS coordinate...";
+        function renderAccountData() {
+            const oList = document.getElementById('orders-list');
+            const fList = document.getElementById('favs-list');
             
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        customerLat = position.coords.latitude;
-                        customerLng = position.coords.longitude;
-                        gpsStatus.style.color = "green";
-                        gpsStatus.innerText = "✅ GPS Captured for accurate Porter Delivery!";
-                    },
-                    (error) => {
-                        gpsStatus.style.color = "red";
-                        gpsStatus.innerText = "❌ GPS denied. Rider will rely on your typed address.";
-                    }
-                );
-            } else {
-                gpsStatus.innerText = "Geolocation is not supported by your browser.";
-            }
+            oList.innerHTML = userOrders.length ? userOrders.map(o => `
+                <div class="lux-card">
+                    <div class="order-header"><span>${new Date(o.date).toLocaleDateString()}</span><span class="order-price">₹${o.total}</span></div>
+                    <div class="order-items">${o.items}</div>
+                    <button class="order-again-btn" onclick="orderAgain('${o.items.replace(/'/g,"\\'")}')"><i class="fas fa-redo"></i> Order Again</button>
+                </div>`).join('') : '<p>No orders yet.</p>';
+
+            fList.innerHTML = userFavorites.length ? userFavorites.map(fav => {
+                let price = getPrice(fav);
+                return `<div class="lux-card fav-card">
+                    <div class="fav-info"><h4>${fav}</h4><p>₹${price}</p></div>
+                    <button class="fav-add-btn" onclick="addToCart('${fav.replace(/'/g,"\\'")}', ${price})">Add +</button>
+                </div>`;
+            }).join('') : '<p>No favorites yet.</p>';
         }
 
+        // CART LOGIC
         function addToCart(name, price) {
-            let existing = cart.find(i => i.name === name);
-            if(existing) existing.qty++; else cart.push({name, price, qty: 1});
+            let ex = cart.find(i => i.name === name);
+            if (ex) ex.qty++; else cart.push({ name, price, qty: 1 });
             updateCartUI();
-            const bottomBtn = document.querySelector('.bottom-cart-btn');
-            if(bottomBtn) { bottomBtn.style.transform = "scale(1.05)"; setTimeout(() => bottomBtn.style.transform = "scale(1)", 200); }
         }
 
-        function removeFromCart(name) { 
-            cart = cart.filter(i => i.name !== name); 
-            if(cart.length === 0) {
-                appliedCoupon = null; 
-                document.getElementById('couponCode').value = '';
-                document.getElementById('couponMessage').style.display = 'none';
-            }
-            updateCartUI(); 
-        }
-
-        function applyCoupon() {
-            let codeInput = document.getElementById('couponCode').value.trim().toUpperCase();
-            let msgEl = document.getElementById('couponMessage');
-            if(!codeInput) return;
-            if(activeCoupons[codeInput]) {
-                appliedCoupon = codeInput; msgEl.style.display = "block"; msgEl.style.color = "green"; msgEl.innerText = `✅ Coupon '${codeInput}' applied!`;
-            } else {
-                appliedCoupon = null; msgEl.style.display = "block"; msgEl.style.color = "red"; msgEl.innerText = "❌ Invalid or expired coupon code.";
-            }
+        function removeFromCart(name) {
+            cart = cart.filter(i => i.name !== name);
             updateCartUI();
+            if (cart.length === 0) toggleCart();
         }
 
         function updateCartUI() {
-            const count = cart.reduce((sum, i) => sum + i.qty, 0);
-            const subTotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            
-            let discount = 0;
-            if(appliedCoupon && activeCoupons[appliedCoupon]) {
-                let coupon = activeCoupons[appliedCoupon];
-                if(coupon.type === "percent") discount = (subTotal * coupon.value) / 100;
-                else discount = coupon.value;
-                if(discount > subTotal) discount = subTotal; 
-            }
-            const finalTotal = subTotal - discount;
+            const count = cart.reduce((s, i) => s + i.qty, 0);
+            const sub = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            let disc = 0;
+            if(appliedCoupon) disc = activeCoupons[appliedCoupon].type === 'percent' ? (sub * activeCoupons[appliedCoupon].value / 100) : activeCoupons[appliedCoupon].value;
+            const total = Math.max(0, sub - disc);
 
-            const bottomBar = document.getElementById("bottomCartBar");
-            const bottomItemCount = document.getElementById("bottomItemCount");
-            const bottomTotalPrice = document.getElementById("bottomTotalPrice");
-            const cartItemsContainer = document.getElementById("cart-items");
-            const cartTotalModal = document.getElementById("cart-total");
-
+            const bar = document.getElementById('bottomCartBar');
             if (count > 0) {
-                bottomBar.style.display = "flex"; document.body.classList.add("cart-active");
-                bottomItemCount.innerText = `${count} Item${count > 1 ? 's' : ''} added`; 
-                bottomTotalPrice.innerText = discount > 0 ? `Total: ₹${finalTotal.toFixed(0)}` : `Estimated Total: ₹${subTotal}`;
-                
-                let totalHtml = `Subtotal: ₹${subTotal}`;
-                if(discount > 0) {
-                    totalHtml += `<br><span style="color: var(--primary-color); font-size: 0.95rem;">Discount applied: -₹${discount.toFixed(0)}</span>`;
-                    totalHtml += `<br>Grand Total: ₹${finalTotal.toFixed(0)}`;
-                } else { totalHtml += `<br>Grand Total: ₹${finalTotal}`; }
-                cartTotalModal.innerHTML = totalHtml;
-
-                cartItemsContainer.innerHTML = cart.map(i => {
-                    let itemTotal = i.price > 0 ? `₹${i.price * i.qty}` : 'TBD';
-                    return `<div class="cart-item"><span>${i.qty}x ${i.name}</span><span>${itemTotal} <i class="fas fa-trash" style="color:red;cursor:pointer;margin-left:10px" onclick="removeFromCart('${i.name.replace(/'/g, "\\'")}')"></i></span></div>`;
-                }).join('');
-            } else {
-                bottomBar.style.display = "none"; document.body.classList.remove("cart-active");
-                cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--text-color);">Your cart is empty.</p>';
-                cartTotalModal.innerText = `Estimated Total: ₹0`;
-                const modal = document.getElementById("cart-modal");
-                if(modal.style.display === "flex") toggleCart();
-            }
+                bar.style.display = 'flex';
+                document.getElementById('bottomItemCount').innerText = `${count} Items | ₹${total}`;
+                document.getElementById('cart-items').innerHTML = cart.map(i => `
+                    <div class="cart-item">
+                        <span>${i.qty}x ${i.name}</span>
+                        <span>₹${i.price * i.qty} <i class="fas fa-trash" style="margin-left:10px; color:red; cursor:pointer;" onclick="removeFromCart('${i.name.replace(/'/g,"\\'")}')"></i></span>
+                    </div>`).join('');
+                document.getElementById('cart-total').innerHTML = `Subtotal: ₹${sub}${disc>0?`<br><span style='color:green; font-size:0.9rem;'>Discount: -₹${disc}</span>`:""}<br>Total: ₹${total}`;
+                renderUpsells();
+            } else { bar.style.display = 'none'; }
         }
 
-        function toggleCart() { const modal = document.getElementById("cart-modal"); modal.style.display = modal.style.display === "flex" ? "none" : "flex"; }
+        function renderUpsells() {
+            const car = document.getElementById('upsell-carousel');
+            let pool = []; for (let cat in fullMenu) pool = pool.concat(fullMenu[cat]);
+            let items = pool.filter(i => !cart.find(c => c.name === i.name)).sort(() => 0.5 - Math.random()).slice(0, 6);
+            car.innerHTML = items.map(i => `
+                <div class="upsell-card">
+                    <div class="upsell-name">${i.name}</div>
+                    <div class="upsell-price">₹${i.price}</div>
+                    <button class="upsell-add" onclick="addToCart('${i.name.replace(/'/g,"\\'")}', ${i.price})">Add +</button>
+                </div>`).join('');
+            document.getElementById('upsell-section').style.display = 'block';
+        }
 
-        // --- CHECKOUT LOGIC ---
+        // CHECKOUT & PAY
         function checkout() {
-            if(cart.length === 0) return alert("Your cart is empty!");
-            
-            const orderType = document.querySelector('input[name="orderType"]:checked').value;
-            const orderName = document.getElementById('orderName').value.trim();
-            const orderPhone = document.getElementById('orderPhone').value.trim();
-            
-            if(!orderName || !orderPhone) { alert("Please fill in your Name and Phone Number."); return; }
-            let orderLocation = "";
-            if (orderType === "Delivery") {
-                orderLocation = document.getElementById('orderAddress').value.trim();
-                if(!orderLocation) { alert("Please provide your Delivery Address."); return; }
-            } else {
-                orderLocation = document.getElementById('tableNumber').value.trim();
-                if(!orderLocation) { alert("Please provide your Table Number."); return; }
-            }
-            if (!isRestaurantOpen) {
-                const proceed = confirm("🚨 The restaurant is currently CLOSED. Do you still want to place this as a pre-order for when they open?");
-                if (!proceed) return;
-            }
+            const name = document.getElementById('orderName').value;
+            const phone = document.getElementById('orderPhone').value;
+            const addr = document.getElementById('orderAddress').value;
+            const type = document.querySelector('input[name="orderType"]:checked').value;
+            const pm = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const subTotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            let discount = 0;
-            if(appliedCoupon && activeCoupons[appliedCoupon]) {
-                let coupon = activeCoupons[appliedCoupon];
-                discount = coupon.type === "percent" ? (subTotal * coupon.value) / 100 : coupon.value;
-                if(discount > subTotal) discount = subTotal;
-            }
-            const finalTotal = subTotal - discount;
-            let itemsString = cart.map(i => `${i.qty}x ${i.name}`).join(", ");
+            if (!name || !phone) return alert("Please enter name and phone.");
+            if (type === 'Delivery' && !addr) return alert("Please enter delivery address.");
 
-            // 1. SAVE DATA TO VARIABLE INSTEAD OF SENDING IT YET
-            pendingOrderData = {
-                orderType: orderType,
-                orderName: orderName,
-                orderPhone: orderPhone,
-                orderLocation: orderLocation,
-                lat: customerLat,                      
-                lng: customerLng,                      
-                triggerPorter: orderType === "Delivery", 
-                items: itemsString,
-                total: finalTotal.toFixed(0),
-                coupon: appliedCoupon ? `${appliedCoupon} (-₹${discount.toFixed(0)})` : "None",
-                paymentMethod: paymentMethod
+            const sub = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            let disc = 0;
+            if(appliedCoupon) disc = activeCoupons[appliedCoupon].type === 'percent' ? (sub * activeCoupons[appliedCoupon].value / 100) : activeCoupons[appliedCoupon].value;
+            const total = Math.max(0, sub - disc);
+
+            let itemsText = cart.map(i => `${i.qty}x ${i.name}`).join("\n");
+            let waMsg = `*Order: Shri Swami Samarth Veg*\nName: ${name}\nPhone: ${phone}\nType: ${type}\nItems:\n${itemsText}\nTotal: ₹${total}\nPayment: ${pm}`;
+            if(addr) waMsg += `\nAddress: ${addr}`;
+            if(customerGPS) waMsg += `\nGPS: https://maps.google.com/?q=${customerGPS}`;
+
+            sendToSheet({ type: 'order', email: loggedInUser?loggedInUser.email:'Guest', name, phone, items: itemsText.replace(/\n/g, ", "), total, location: addr, gps: customerGPS });
+            
+            if(pm === "UPI") {
+                document.getElementById('upi-instructions').style.display = "block";
+                window.location.href = `upi://pay?pa=${CONFIG.UPI_ID}&pn=ShriSwamiSamarthVeg&am=${total}&cu=INR`;
+            }
+            
+            document.getElementById('success-message').innerText = `Total: ₹${total}`;
+            document.getElementById('wa-send-btn').onclick = () => {
+                window.open(`https://wa.me/${CONFIG.PHONE}?text=${encodeURIComponent(waMsg)}`);
+                resetCart();
             };
-
-            // 2. CREATE WHATSAPP TEXT
-            let text = `Hello Shri Swami Samarth, I would like to place a *${orderType.toUpperCase()}* order:\n\n*--- Order Details ---*\n`;
-            cart.forEach(i => { let itemCost = i.price > 0 ? `₹${i.price * i.qty}` : 'Price on Request'; text += `▪ ${i.qty}x ${i.name} - ${itemCost}\n`; });
-            text += `\n*Subtotal:* ₹${subTotal}`;
-            if(discount > 0) text += `\n*Discount (${appliedCoupon}):* -₹${discount.toFixed(0)}`;
-            text += `\n*Grand Total:* ₹${finalTotal.toFixed(0)}\n*Payment Option:* ${paymentMethod}\n\n*--- Customer Details ---*\n*Name:* ${orderName}\n*Phone:* ${orderPhone}\n`;
-            text += orderType === "Delivery" ? `*Address:* ${orderLocation}\n` : `*Table Number:* ${orderLocation}\n`;
-            text += `\n*(Prices for unpriced items will be added by the restaurant)*\nPlease confirm my order.`;
-
-            pendingWaLink = `https://wa.me/919422231321?text=${encodeURIComponent(text)}`;
-            const upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Shri%20Swami%20Samarth&am=${finalTotal.toFixed(2)}&cu=INR&tn=Food%20Order`;
-            
-            toggleCart(); // Close the checkout cart
-            showSuccessModal(paymentMethod, finalTotal, upiLink);
+            document.getElementById('success-modal').style.display = "flex";
+            toggleCart();
         }
 
-        // --- SUCCESS MODAL FUNCTION ---
-        function showSuccessModal(paymentMethod, finalTotal, upiLink) {
-            const modal = document.getElementById('success-modal');
-            const msg = document.getElementById('success-message');
-            const upiInst = document.getElementById('upi-instructions');
-            const waBtn = document.getElementById('wa-send-btn');
-
-            // ATTACH CLICK EVENT TO SEND TO DATABASE *THEN* OPEN WHATSAPP
-            waBtn.onclick = function() { confirmAndSendOrder(); };
-
-            modal.style.display = "flex";
-
-            if (paymentMethod === "UPI" && finalTotal > 0) {
-                msg.innerHTML = `Your total is <b>₹${finalTotal.toFixed(0)}</b>.`;
-                upiInst.style.display = "block";
-                window.location.href = upiLink; // Directly launch UPI app
-            } else {
-                msg.innerHTML = `Your order summary is ready to be sent.`;
-                upiInst.style.display = "none";
-            }
-        }
-
-        // --- NEW FUNCTION TO FINALIZE & SEND ---
-        function confirmAndSendOrder() {
-            // Send data to Google Sheets & Porter ONLY NOW
-            if(ORDER_TRACKING_URL && pendingOrderData) {
-                fetch(ORDER_TRACKING_URL, {
-                    method: 'POST', mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(pendingOrderData)
-                }).catch(e => console.log("Tracker silent error"));
-            }
-
-            // Open WhatsApp
-            window.open(pendingWaLink, "_blank");
-
-            // Close modal & reset cart
-            closeSuccessModal();
-            cart = []; 
-            appliedCoupon = null;
-            document.getElementById('couponCode').value = '';
-            document.getElementById('couponMessage').style.display = 'none';
+        // UTILITIES
+        function applyCoupon() {
+            let code = document.getElementById('couponCode').value.toUpperCase();
+            if(activeCoupons[code]) { appliedCoupon = code; alert("Coupon Applied!"); }
+            else { appliedCoupon = null; alert("Invalid Coupon"); }
             updateCartUI();
         }
 
-        function closeSuccessModal() { document.getElementById('success-modal').style.display = "none"; }
-
-        function bookTableWA() {
-            const form = document.getElementById("reservationForm");
-            if (!form.checkValidity()) { form.reportValidity(); return; }
-            const name = document.getElementById("resName").value; const guests = document.getElementById("resGuests").value;
-            const date = document.getElementById("resDate").value; const time = document.getElementById("resTime").value;
-            const text = `Hello Shri Swami Samarth, I would like to request a Table Reservation.\n\n*Name:* ${name}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n\nPlease confirm my booking.`;
-            window.open(`https://wa.me/919422231321?text=${encodeURIComponent(text)}`, "_blank");
+        function fetchGPS() {
+            navigator.geolocation.getCurrentPosition(p => {
+                customerGPS = `${p.coords.latitude},${p.coords.longitude}`;
+                document.getElementById('gpsStatus').innerText = "✅ GPS Captured";
+                document.getElementById('gpsStatus').style.color = "green";
+            }, () => { alert("Please enable GPS permissions."); });
         }
 
-        function shareMenu() {
-            if (navigator.share) { navigator.share({ title: 'Shri Swami Samarth', text: 'Check out the pure veg menu & order online!', url: window.location.href }).catch(console.error);
-            } else { alert('Copy the URL from your browser to share!'); }
+        function checkBusinessStatus() {
+            let hr = new Date().getHours();
+            let badge = document.getElementById('status-badge');
+            if(hr >= 11 && hr < 23) { badge.innerText = "Open Now"; badge.className = "status-badge status-open"; }
+            else { badge.innerText = "Closed Now"; badge.className = "status-badge status-closed"; }
         }
-        document.getElementById('resDate').min = new Date().toISOString().split('T')[0];
+
+        function toggleFav(name, el) {
+            if(!loggedInUser) return alert("Please Login to save favorites.");
+            let idx = userFavorites.indexOf(name);
+            if(idx > -1) userFavorites.splice(idx, 1); else userFavorites.push(name);
+            el.classList.toggle('is-fav'); el.classList.toggle('fas'); el.classList.toggle('far');
+            sendToSheet({ type: 'update_favorites', email: loggedInUser.email, favorites: userFavorites });
+            renderAccountData();
+        }
+
+        function orderAgain(items) {
+            let arr = items.split(', ');
+            arr.forEach(str => {
+                let m = str.match(/^(\d+)x\s+(.+)$/);
+                if(m) addToCart(m[2], getPrice(m[2]));
+            });
+            toggleCart();
+        }
+
+        function getPrice(name) {
+            for(let c in fullMenu) { let i = fullMenu[c].find(x => x.name === name); if(i) return i.price; }
+            return 0;
+        }
+
+        function sendToSheet(data) { fetch(CONFIG.APPS_SCRIPT, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) }); }
+        function attachAccordionLogic() { document.querySelectorAll(".accordion").forEach(a => a.onclick = function() { this.classList.toggle("active"); let p = this.nextElementSibling; p.classList.toggle("show"); p.style.maxHeight = p.style.maxHeight ? null : p.scrollHeight + "px"; }); }
+        function toggleCart() { let m = document.getElementById('cart-modal'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
+        function toggleDropdown(e) { e.stopPropagation(); let d = document.getElementById('navDropdown'); d.style.display = d.style.display === 'flex' ? 'none' : 'flex'; }
+        function goHome() { document.getElementById('my-orders-page').style.display = 'none'; document.getElementById('home-page').style.display = 'block'; window.scrollTo(0,0); }
+        function showMyOrdersPage() { document.getElementById('home-page').style.display = 'none'; document.getElementById('my-orders-page').style.display = 'block'; fetchHistory(); }
+        function switchAccTab(t) { document.querySelectorAll('.acc-tab-btn').forEach(b => b.classList.remove('active')); document.querySelectorAll('.acc-section').forEach(s => s.classList.remove('active')); document.getElementById('tab-btn-'+t).classList.add('active'); document.getElementById('tab-'+t).classList.add('active'); }
+        function logout() { localStorage.clear(); window.location.reload(); }
+        function showAccountDetails() { if(!loggedInUser) return; document.getElementById('det-pic').src = loggedInUser.picture; document.getElementById('det-name').innerText = loggedInUser.name; document.getElementById('det-email').innerText = loggedInUser.email; document.getElementById('account-details-modal').style.display='flex'; }
+        function closeAccountDetails() { document.getElementById('account-details-modal').style.display='none'; }
+        function closeSuccess() { document.getElementById('success-modal').style.display = 'none'; }
+        function toggleOrderFields() { document.getElementById('addressField').style.display = document.querySelector('input[name="orderType"]:checked').value === 'Delivery' ? 'block' : 'none'; }
+        function resetCart() { cart = []; appliedCoupon = null; updateCartUI(); closeSuccess(); }
+        function bookTableWA() { let n = document.getElementById('resName').value; let d = document.getElementById('resDateTime').value; window.open(`https://wa.me/${CONFIG.PHONE}?text=Reservation request for ${n} at ${d}`); }
     </script>
 </body>
 </html>
